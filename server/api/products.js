@@ -1,14 +1,16 @@
-const productRouter = require('express').Router()
-const Product = require('../db/product')
+const router = require('express').Router();
+const { Product } = require('../db/index');
 
 // *********************
 //  GET /api/products
 // *********************
-productRouter.get('/', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    const products = await Product.findAll()
-    res.json(products)
-  } catch(err) {
-    next(err)
+    const products = await Product.findAll();
+    res.json(products);
+  } catch (err) {
+    next(err);
   }
-})
+});
+
+module.exports = router;

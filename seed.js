@@ -1,4 +1,4 @@
-const { db, Products } = require('./server/index'); // fill in require based on file path
+const { db, Product } = require('./server/db/index');
 
 const pottery = [
   {
@@ -150,7 +150,7 @@ const seed = async () => {
     await db.sync({ force: true });
     await Promise.all(
       pottery.map((ceramic) => {
-        return Products.create(ceramic);
+        return Product.create(ceramic);
       })
     );
   } catch (err) {
