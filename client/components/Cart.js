@@ -25,9 +25,10 @@ export class Cart extends React.Component {
               );
               return (
                 <div key={product.id} className="cart-item">
+                  <img className="cart-item-image" src={product.imgUrl} />
                   <p>{product.title}</p>
                   <p>Quantity: {productArray[1]}</p>
-                  <div>
+                  <div className="add-minus-button-container">
                     <ion-icon
                       name="add-circle-outline"
                       onClick={() => {
