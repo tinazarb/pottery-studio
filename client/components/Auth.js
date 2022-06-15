@@ -1,36 +1,43 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {authenticate} from '../store/auth'
+import { render } from 'enzyme';
+import React from 'react';
+import { connect } from 'react-redux';
+import { authenticate } from '../store/auth';
 
 /**
  * COMPONENT
  */
-const Auth = props => {
-  const {name, displayName, handleSubmit, error} = props
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="username">
-            <small>Username</small>
-          </label>
-          <input name="username" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-    </div>
-  )
+class Auth extends Component {
+  render() {
+    return (
+      <div>
+        <h1>Hello!</h1>
+        <form onSubmit={handleSubmit} name={name}>
+          <div>
+            <label htmlFor="username">
+              <small>Email</small>
+            </label>
+            <input name="email" type="text" />
+          </div>
+          <div>
+            <label htmlFor="password">
+              <small>Password</small>
+            </label>
+            <input name="password" type="password" />
+          </div>
+          <div>
+            <button type="submit">{displayName}</button>
+          </div>
+          {error && error.response && <div> {error.response.data} </div>}
+        </form>
+      </div>
+    );
+  }
 }
+
+const mapState = (state) => {
+  return {};
+};
 
 /**
  * CONTAINER
@@ -39,33 +46,34 @@ const Auth = props => {
  *   function, and share the same Component. This is a good example of how we
  *   can stay DRY with interfaces that are very similar to each other!
  */
-const mapLogin = state => {
+const mapLogin = (state) => {
   return {
     name: 'login',
     displayName: 'Login',
-    error: state.auth.error
-  }
-}
+    // error: state.auth.error,
+  };
+};
 
-const mapSignup = state => {
-  return {
-    name: 'signup',
-    displayName: 'Sign Up',
-    error: state.auth.error
-  }
-}
+// const mapSignup = (state) => {
+//   return {
+//     name: 'signup',
+//     displayName: 'Sign Up',
+//     error: state.auth.error,
+//   };
+// };
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     handleSubmit(evt) {
-      evt.preventDefault()
-      const formName = evt.target.name
-      const username = evt.target.username.value
-      const password = evt.target.password.value
-      dispatch(authenticate(username, password, formName))
-    }
-  }
-}
+      evt.preventDefault();
+      const email = evt.target.email.value;
+      const password = evt.target.password.value;
+      dispatch(authenticate(email, password));
+    },
+  };
+};
 
-export const Login = connect(mapLogin, mapDispatch)(Auth)
-export const Signup = connect(mapSignup, mapDispatch)(Auth)
+export default connect(mapLogin, mapDispatch)(Auth);
+// export const Signup = connect(mapSignup, mapDispatch)(Auth);
+
+// export default Auth;
