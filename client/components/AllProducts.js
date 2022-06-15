@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProducts } from '../store/products';
 
-
 export class AllProducts extends React.Component {
   componentDidMount() {
     this.props.getProducts();
@@ -13,15 +12,22 @@ export class AllProducts extends React.Component {
     return (
       <div>
         <h2>Products</h2>
-        <ul>
-          {products.map((product) => (
-            <div key={product.id}>
-              <p className="title">Title: {product.title}</p>
-              <p className="image">Image: {product.imgUrl}</p>
-              <p className="price">Price: {product.price}</p>
-            </div>
-          ))}
-        </ul>
+        <div className="product-list">
+          <ul>
+            {products.map((product) => (
+              <div>
+                <div key={product.id}>
+                  <p className="title">Title: {product.title}</p>
+                  <img className="list-image" src={product.imgUrl} />
+                  <p className="price">Price: {product.price}</p>
+                </div>
+                <div>
+                  <button type="button">Purchase</button>
+                </div>
+              </div>
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }
@@ -36,15 +42,3 @@ const mapDispatch = (dispatch) => ({
 });
 
 export default connect(mapState, mapDispatch)(AllProducts);
-
-
-
-
-
-
-
-
-
-
-
-

@@ -33,3 +33,16 @@ footer {
   display: flex;
   justify-content: space-between;
 }
+
+.list-image {
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

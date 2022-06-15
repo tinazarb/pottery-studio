@@ -1,9 +1,6 @@
 const router = require('express').Router();
 const { Product } = require('../db/index');
 
-// *********************
-//  GET /api/products
-// *********************
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll();
