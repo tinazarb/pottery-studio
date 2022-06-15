@@ -1,26 +1,12 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
 
-/**
- * COMPONENT
- */
-export const Home = props => {
-  const {username} = props
-
+export const Home = () => {
   return (
     <div>
-      <h3>Welcome, {username}</h3>
+      <h1>Welcome to Pottery Studio</h1>
     </div>
-  )
-}
+  );
+};
 
-/**
- * CONTAINER
- */
-const mapState = state => {
-  return {
-    username: state.auth.username
-  }
-}
-
-export default connect(mapState)(Home)
+export default Home;
