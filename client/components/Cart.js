@@ -29,15 +29,6 @@ export class Cart extends React.Component {
                 </div>
               );
             })}
-
-            {/* {Object.entries(localStorage).map((array) => {
-              return (
-                <div key={array[0]} className="cart-item">
-                  <p>{array[0]}</p>
-                  <p>Quantity: {array[1]}</p>
-                </div>
-              );
-            })} */}
           </div>
           <div>
             <Link to="/checkout">Proceed to Checkout</Link>

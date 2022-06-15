@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { fetchProducts } from '../store/products';
+import { incrementItem } from '../store/cart';
 
 export class AllProducts extends React.Component {
   componentDidMount() {
@@ -27,7 +29,8 @@ export class AllProducts extends React.Component {
                   {/* I want to click the button and it adds something to cart...  */}
                   <button
                     type="button"
-                    onClick={() => localStorage.setItem(product.title, 1)}
+                    // need to check if item already exists in localStorage.
+                    onClick={() => this.props.incrementItem(product.id)}
                   >
                     Purchase
                   </button>
@@ -47,6 +50,7 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => ({
   getProducts: () => dispatch(fetchProducts()),
+  incrementItem: (productId) => dispatch(incrementItem(productId)),
 });
 
 export default connect(mapState, mapDispatch)(AllProducts);
