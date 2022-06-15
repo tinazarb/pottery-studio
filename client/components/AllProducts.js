@@ -15,14 +15,22 @@ export class AllProducts extends React.Component {
         <div className="product-list">
           <ul>
             {products.map((product) => (
-              <div>
-                <div key={product.id}>
+              <div key={product.id}>
+                <div>
                   <p className="title">Title: {product.title}</p>
                   <img className="list-image" src={product.imgUrl} />
                   <p className="price">Price: {product.price}</p>
+                  {/* temp placement so I can see it working */}
+                  <p className="quantity">quantity: {product.quantity}</p>
                 </div>
                 <div>
-                  <button type="button">Purchase</button>
+                  {/* I want to click the button and it adds something to cart...  */}
+                  <button
+                    type="button"
+                    onClick={() => localStorage.setItem(product.title, 1)}
+                  >
+                    Purchase
+                  </button>
                 </div>
               </div>
             ))}
