@@ -18,6 +18,6 @@ store.subscribe(() => {
   localStorage.setItem('cart', JSON.stringify(state.cart));
 });
 
-//optimisation note: only update local storage when the cart changes
+//optimisation note: change to only update local storage when the cart changes
 
 export default store;

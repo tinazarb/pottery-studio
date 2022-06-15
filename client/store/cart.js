@@ -32,7 +32,6 @@ export default function cartReducer(state = initialState, action) {
         return { ...state, [action.productId]: 1 };
       }
     case DECREMENT_QTY:
-      //case for 1 -- delete it
       if (state[action.productId] === 1) {
         let newstate = { ...state };
         delete newstate[action.productId];
