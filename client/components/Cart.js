@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { fetchProducts } from '../store/products';
-import { incrementItem } from '../store/cart';
+import { incrementItem, decrementItem } from '../store/cart';
 
 export class Cart extends React.Component {
   componentDidMount() {
@@ -34,7 +34,10 @@ export class Cart extends React.Component {
                         this.props.incrementItem(product.id);
                       }}
                     ></ion-icon>
-                    <ion-icon name="remove-circle-outline"></ion-icon>
+                    <ion-icon
+                      name="remove-circle-outline"
+                      onClick={() => this.props.decrementItem(product.id)}
+                    ></ion-icon>
                   </div>
                 </div>
               );
@@ -57,6 +60,7 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   getProducts: () => dispatch(fetchProducts()),
   incrementItem: (productId) => dispatch(incrementItem(productId)),
+  decrementItem: (productId) => dispatch(decrementItem(productId)),
 });
 
 export default connect(mapState, mapDispatch)(Cart);
