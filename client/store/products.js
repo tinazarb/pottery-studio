@@ -12,10 +12,10 @@ export const _setProducts = (products) => {
 };
 
 // Thunk Creators
-export const fetchProjects = () => {
+export const fetchProducts = () => {
   return async (dispatch) => {
     const { data: products } = await axios.get('/api/products')
-    dispatch(_setProjects(products))
+    dispatch(_setProducts(products))
   }
 };
 
