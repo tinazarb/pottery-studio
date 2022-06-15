@@ -5,7 +5,7 @@ import Home from '../client/components/Home';
 import Navbar from '../client/components/Navbar';
 import Footer from '../client/components/Footer';
 import AllProducts from '../client/components/AllProducts';
-import Login from '../client/components/Auth';
+import Login from '../client/components/Login';
 
 const App = () => {
   return (

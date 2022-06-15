@@ -1,4 +1,3 @@
-import { render } from 'enzyme';
 import React from 'react';
 import { connect } from 'react-redux';
 import { authenticate } from '../store/auth';
@@ -7,12 +6,12 @@ import { authenticate } from '../store/auth';
  * COMPONENT
  */
 
-class Auth extends Component {
+class Auth extends React.Component {
   render() {
     return (
       <div>
         <h1>Hello!</h1>
-        <form onSubmit={handleSubmit} name={name}>
+        {/* <form onSubmit={handleSubmit} name={name}>
           <div>
             <label htmlFor="username">
               <small>Email</small>
@@ -29,7 +28,7 @@ class Auth extends Component {
             <button type="submit">{displayName}</button>
           </div>
           {error && error.response && <div> {error.response.data} </div>}
-        </form>
+        </form> */}
       </div>
     );
   }
