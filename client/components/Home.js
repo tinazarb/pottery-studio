@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 export const Home = () => {
   return (
     <div>
-      <h3>Welcome</h3>
+      <h1>Welcome to Pottery Studio</h1>
     </div>
   );
 };
