@@ -1,23 +1,43 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { fetchProducts } from '../store/products';
+
 export class Cart extends React.Component {
+  componentDidMount() {
+    this.props.getProducts();
+  }
+
   render() {
-    console.log(localStorage.getItem('Cara Mug'));
+    if (this.props.products.length === 0) {
+      return <div>Loading...</div>;
+    }
     return (
       <div className="cart-container">
         <div>
           <h2>Your Cart</h2>
           <div>
-            {Object.entries(localStorage).map((array) => {
-              console.log(array[0]);
+            {Object.entries(this.props.cart).map((productArray) => {
+              const product = this.props.products.find(
+                (product) => product.id === parseInt(productArray[0], 10)
+              );
               return (
-                <div>
+                <div key={product.id} className="cart-item">
+                  <p>{product.title}</p>
+                  <p>Quantity: {productArray[1]}</p>
+                </div>
+              );
+            })}
+
+            {/* {Object.entries(localStorage).map((array) => {
+              return (
+                <div key={array[0]} className="cart-item">
                   <p>{array[0]}</p>
                   <p>Quantity: {array[1]}</p>
                 </div>
               );
-            })}
+            })} */}
           </div>
           <div>
             <Link to="/checkout">Proceed to Checkout</Link>
@@ -27,4 +47,14 @@ export class Cart extends React.Component {
     );
   }
 }
-export default Cart;
+
+const mapState = (state) => ({
+  cart: state.cart,
+  products: state.products,
+});
+
+const mapDispatch = (dispatch) => ({
+  getProducts: () => dispatch(fetchProducts()),
+});
+
+export default connect(mapState, mapDispatch)(Cart);

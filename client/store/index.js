@@ -13,4 +13,11 @@ const middleware = composeWithDevTools(
 
 const store = createStore(reducer, middleware);
 
+store.subscribe(() => {
+  const state = store.getState();
+  localStorage.setItem('cart', JSON.stringify(state.cart));
+});
+
+//optimisation note: only update local storage when the cart changes
+
 export default store;

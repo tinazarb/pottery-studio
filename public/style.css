@@ -46,3 +46,9 @@ ul {
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
