@@ -19,7 +19,7 @@ export class AllProducts extends React.Component {
             <div key={product.id}>
               <Link to={`/products/${product.id}`}>
                 <p className="title">Title: {product.title}</p>
-                <img src={product.imgUrl}/>
+                <img src={product.imgUrl} style={{width: '500px', height: 'auto'}}/>
               </Link>
               <p className="price">Price: {product.price}</p>
             </div>

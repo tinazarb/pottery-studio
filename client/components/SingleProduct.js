@@ -11,18 +11,38 @@ class SingleProduct extends React.Component {
   render() {
     const { title, price, type, quantity, colour, imgUrl} = this.props.product
 
+    const description = this.props.product.description || "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia recusandae illo assumenda eos quos fuga non officia odio, minus asperiores cumque perspiciatis, in debitis ipsum consectetur nemo harum eum enim!";
+
     return (
-      <div>
-        <h2>{title}</h2>
-        <p>{type}</p>
-        <p>{colour}</p>
-        <p>${price}</p>
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" name="quantity"></input>
-        <br />
-        <img src={imgUrl} style={{width: '500px', height: 'auto'}}/>
-        <br />
-        <button>Add to Cart</button>
+      <div className="container">
+        <div className="row align-items-center">
+
+          <div className="col-md-6">
+            <img className="img-fluid" src={imgUrl} style={{width: '500px', height: 'auto'}}/>
+          </div>
+
+          <div className="col-md-6 single-product-content">
+            <h2 className="title">{title}</h2>
+            <p className="price">${price}</p>
+
+            <div className="quantity">
+              <label for="quantity">QUANTITY:</label>
+              <input type="number" id="quantity" name="quantity" min="0" style={{width: '60px', height: 'auto'}}></input>
+            </div>
+
+            <button class="btn btn-dark">ADD TO CART <i class="bi bi-cart"></i></button>
+
+            <div className="description">
+              <p><span>Type: </span>{type}</p>
+              <p><span>Colour: </span>{colour}</p>
+              <p><span>Description: </span></p>
+              <p>{description}</p>
+            </div>
+          </div>
+
+        </div>
+
+
       </div>
     )
 
