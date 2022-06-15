@@ -148,17 +148,17 @@ const pottery = [
 
 const users = [
   {
-    firstName: 'Kendall',
-    lastName: 'Perry',
-    email: 'kendallperry@gmail.com',
-    password: 'katwins',
+    firstName: 'John',
+    lastName: 'Jones',
+    email: 'JohnJones@gmail.com',
+    password: 'testing12345',
     address: '91 5th Ave, NY, NY 10011',
   },
   {
     firstName: 'Lisa',
     lastName: 'Forester',
     email: 'lforester@gmail.com',
-    password: 'lisa1234',
+    password: 'testing12345',
     address: '22 Havemeyer St, Brooklyn, NY 11004',
   },
 ];

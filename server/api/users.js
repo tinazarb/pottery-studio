@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { User } = require('../db/index');
 
+// include authentication admin only 
+// is admin? use next err wont go to async call
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({ attributes: ['id', 'email'] });
