@@ -1,4 +1,5 @@
-const { db, Product } = require('./server/db/index');
+const { LibManifestPlugin } = require('webpack');
+const { db, Product, User } = require('./server/db/index');
 
 const pottery = [
   {
@@ -145,12 +146,34 @@ const pottery = [
   },
 ];
 
+const users = [
+  {
+    firstName: 'Kendall',
+    lastName: 'Perry',
+    email: 'kendallperry@gmail.com',
+    password: 'katwins',
+    address: '91 5th Ave, NY, NY 10011',
+  },
+  {
+    firstName: 'Lisa',
+    lastName: 'Forester',
+    email: 'lforester@gmail.com',
+    password: 'lisa1234',
+    address: '22 Havemeyer St, Brooklyn, NY 11004',
+  },
+];
+
 const seed = async () => {
   try {
     await db.sync({ force: true });
     await Promise.all(
       pottery.map((ceramic) => {
         return Product.create(ceramic);
+      })
+    );
+    await Promise.all(
+      users.map((user) => {
+        return User.create(user);
       })
     );
   } catch (err) {
