@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { fetchProducts } from '../store/products';
+import { incrementItem } from '../store/cart';
 
 export class Cart extends React.Component {
   componentDidMount() {
@@ -26,6 +27,15 @@ export class Cart extends React.Component {
                 <div key={product.id} className="cart-item">
                   <p>{product.title}</p>
                   <p>Quantity: {productArray[1]}</p>
+                  <div>
+                    <ion-icon
+                      name="add-circle-outline"
+                      onClick={() => {
+                        this.props.incrementItem(product.id);
+                      }}
+                    ></ion-icon>
+                    <ion-icon name="remove-circle-outline"></ion-icon>
+                  </div>
                 </div>
               );
             })}
@@ -46,6 +56,7 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => ({
   getProducts: () => dispatch(fetchProducts()),
+  incrementItem: (productId) => dispatch(incrementItem(productId)),
 });
 
 export default connect(mapState, mapDispatch)(Cart);
