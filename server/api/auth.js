@@ -1,14 +1,13 @@
 const router = require('express').Router();
-const User = require('../db/models/User');
+
+const { User } = require('../db/index');
 const { requireToken } = require('../middleware');
 
 //auth post -- signing in
 router.post('/login', async (req, res, next) => {
   try {
-    const { token, email, firstName, lastName } = await User.authenticate(
-      req.body
-    );
-    res.json({ token, email, firstName, lastName });
+    const user = await User.authenticate(req.body);
+    res.json(user);
   } catch (err) {
     next(err);
   }

@@ -3,7 +3,7 @@ const db = require('../db');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const { STRING, VIRTUAL } = Sequelize;
+const { STRING, VIRTUAL, BOOLEAN } = Sequelize;
 
 const User = db.define('user', {
   firstName: {
@@ -84,7 +84,8 @@ User.prototype.toJSON = function () {
   return {
     token: this.token,
     email: this.email,
-    profilePicture: this.profilePicture,
+    firstName: this.firstName,
+    lastName: this.lastName,
   };
 };
 

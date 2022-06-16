@@ -1,5 +1,6 @@
-const { User } = require('./db/models/User');
+const { User } = require('./db/index');
 
+//middleware  that converts token into user object
 const requireToken = async (req, res, next) => {
   try {
     const user = await User.byToken(req.headers.authorization);

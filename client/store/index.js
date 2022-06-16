@@ -2,17 +2,20 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+
 import products from './products';
 import cart from './cart';
 import users from './users';
-
 import singleProduct from './singleProduct';
+import auth from './auth';
 
+//FYI auth was not imported to global state
 const reducer = combineReducers({
   products,
   singleProduct,
   cart,
   users,
+  auth,
 });
 
 const middleware = composeWithDevTools(
