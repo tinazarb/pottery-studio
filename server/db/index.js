@@ -3,8 +3,10 @@
 const db = require('./db');
 
 const Product = require('./models/Product');
+const User = require('./models/User');
 
 module.exports = {
   db,
   Product,
+  User,
 };
