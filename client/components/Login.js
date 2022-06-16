@@ -21,19 +21,14 @@ class Login extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    // const email = evt.target.email.value;
-    // const password = evt.target.password.value;
-    // console.log('this.props', this.props)
-
     this.props.loginUser(this.state);
   }
 
   render() {
-    console.log('state', this.state);
     const { email, password } = this.state;
     return (
       <div>
-        <h1>Hello!</h1>
+        <h2>Hello!</h2>
         <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="email">

@@ -8,6 +8,7 @@ import SingleProduct from '../client/components/SingleProduct';
 import Footer from '../client/components/Footer';
 import Login from '../client/components/Login';
 import Cart from '../client/components/Cart';
+import CreateAccount from './components/CreateAccount';
 
 import { autoLogin } from './store/auth';
 
@@ -20,9 +21,11 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/shop" component={AllProducts} />
-            <Route exact path="/login" component={Login} />
             <Route exact path="/products/:id" component={SingleProduct} />
             <Route exact path="/cart" component={Cart} />
+            {/* LK: will eventually need to set up so these routes are not available to loggedin users */}
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={CreateAccount} />
           </Switch>
           <Footer />
         </main>

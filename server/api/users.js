@@ -13,10 +13,10 @@ const { User } = require('../db/index');
 // });
 
 //creates an account or user
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
-    const newUser = await User.create(req.body)
-    res.status(201).json(newUser)
+    const newUser = await User.create(req.body);
+    res.status(201).json(newUser);
   } catch (err) {
     next(err);
   }

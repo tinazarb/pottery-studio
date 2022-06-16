@@ -1,18 +1,8 @@
 import axios from 'axios';
 
-import history from '../history';
-
 // Action Types
 // const GET_USERS = 'GET_USERS';
 const SET_USER = 'SET_USER';
-
-// Action Creators
-// export const gotUsers = (users) => {
-//   return {
-//     type: GET_USERS,
-//     users,
-//   };
-// };
 
 export const setUser = (user) => {
   return {
@@ -21,15 +11,7 @@ export const setUser = (user) => {
   };
 };
 
-// Thunk Creators
-// export const fetchUsers = () => {
-//   return async (dispatch) => {
-//     const { data: users } = await axios.get('/api/users');
-//     dispatch(gotUsers(users));
-//   };
-// };
-
-export const postUser = (user) => {
+export const createUser = (user, history) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post('/api/users', user);
@@ -46,9 +28,24 @@ export const postUser = (user) => {
 export default function usersReducer(state = null, action) {
   switch (action.type) {
     case SET_USER:
-      return action.users;
+      return action.user;
     default:
       return state;
   }
-  return state;
 }
+
+// Action Creators
+// export const gotUsers = (users) => {
+//   return {
+//     type: GET_USERS,
+//     users,
+//   };
+// };
+
+// Thunk Creators
+// export const fetchUsers = () => {
+//   return async (dispatch) => {
+//     const { data: users } = await axios.get('/api/users');
+//     dispatch(gotUsers(users));
+//   };
+// };
