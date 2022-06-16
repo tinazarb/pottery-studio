@@ -26,7 +26,7 @@ class Login extends React.Component {
     // const password = evt.target.password.value;
     // console.log('this.props', this.props)
 
-    this.props.loginUser({...this.state})
+    this.props.loginUser(this.state)
   }
 
 
@@ -58,7 +58,7 @@ class Login extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginUser: (email, password) => dispatch(authenticate(email, password))
+    loginUser: (formData) => dispatch(authenticate(formData))
   }
 }
 
