@@ -40,7 +40,7 @@ export class Cart extends React.Component {
                 <div key={product.id} className="cart-item">
                   <img className="cart-item-image" src={product.imgUrl} />
                   <p>{product.title}</p>
-                  <p>${product.price * productArray[1]}</p>
+
                   <p>Quantity: {productArray[1]}</p>
                   <div className="add-minus-button-container">
                     <ion-icon
@@ -54,11 +54,12 @@ export class Cart extends React.Component {
                       onClick={() => this.props.decrementItem(product.id)}
                     ></ion-icon>
                   </div>
+                  <p>${product.price * productArray[1]}</p>
                 </div>
               );
             })}
           </div>
-          <div>Subtotal: ${this.getSubTotal()}</div>
+          <div id="subtotal">Subtotal: ${this.getSubTotal()}</div>
           <div>
             <Link to="/checkout">Proceed to Checkout</Link>
           </div>
