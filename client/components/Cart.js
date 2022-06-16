@@ -10,6 +10,19 @@ export class Cart extends React.Component {
     this.props.getProducts();
   }
 
+  getSubTotal = () => {
+    let total = 0;
+    Object.entries(this.props.cart).forEach((productArray) => {
+      const product = this.props.products.find(
+        (product) => product.id === parseInt(productArray[0], 10)
+      );
+      let qty = productArray[1];
+      let price = product.price;
+      total += qty * price;
+    });
+    return total;
+  };
+
   render() {
     if (this.props.products.length === 0) {
       return <div>Loading...</div>;
@@ -45,7 +58,7 @@ export class Cart extends React.Component {
               );
             })}
           </div>
-          <div>Subtotal:</div>
+          <div>Subtotal: ${this.getSubTotal()}</div>
           <div>
             <Link to="/checkout">Proceed to Checkout</Link>
           </div>
