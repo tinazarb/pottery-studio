@@ -43,38 +43,6 @@ export const autoLogin = (token) => {
   };
 };
 
-// export const me = () => async (dispatch) => {
-//   const token = localStorage.getItem('TOKEN');
-//   if (token) {
-//     const res = await axios.get('/auth/me', {
-//       headers: {
-//         authorization: token,
-//       },
-//     });
-//     console.log('RES DATA', res.data);
-//     return dispatch(setAuth(res.data));
-//   }
-// };
-
-// export const authenticate = (formData) => async (dispatch) => {
-//   try {
-//     const { data } = await axios.post('/auth/login', formData);
-//     localStorage.setItem('TOKEN', data.token);
-//     dispatch(me());
-//   } catch (authError) {
-//     return dispatch(setAuth({ error: authError }));
-//   }
-// };
-
-// export const logout = () => {
-//   window.localStorage.removeItem(TOKEN);
-//   history.push('/login');
-//   return {
-//     type: SET_AUTH,
-//     auth: {},
-//   };
-// };
-
 /**
  * REDUCER
  */

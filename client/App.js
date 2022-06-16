@@ -9,6 +9,8 @@ import Footer from '../client/components/Footer';
 import Login from '../client/components/Login';
 import Cart from '../client/components/Cart';
 
+import { autoLogin } from './store/auth';
+
 const App = () => {
   return (
     <Router>
