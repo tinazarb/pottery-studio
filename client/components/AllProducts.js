@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchProducts } from '../store/products';
-
 
 import { fetchProducts } from '../store/products';
 import { incrementItem } from '../store/cart';
@@ -24,7 +22,11 @@ export class AllProducts extends React.Component {
               <div key={product.id}>
                 <div>
                   <p className="title">Title: {product.title}</p>
-                  <img className="list-image" src={product.imgUrl} />
+
+                  <Link to={`/products/${product.id}`}>
+                    <img className="list-image" src={product.imgUrl} />
+                  </Link>
+
                   <p className="price">Price: {product.price}</p>
                   {/* temp placement so I can see it working */}
                   <p className="quantity">quantity: {product.quantity}</p>
@@ -43,7 +45,6 @@ export class AllProducts extends React.Component {
             ))}
           </ul>
         </div>
-
       </div>
     );
   }
