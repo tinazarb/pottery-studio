@@ -6,9 +6,13 @@ import { logout } from '../store/auth';
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
     <nav>
-      <div>
-        {/* The navbar will show these links before you log in */}
-        <Link to="/shop">Shop</Link>
+      <div className="navbar">
+        {/* The navbar will show these links after you log in */}
+        <Link to="/">Home</Link>
+
+        <a href="/shop">Shop</a>
+        <a href="#">About Us</a>
+        <a href="/cart">Cart</a>
         <Link to="/login">Login</Link>
         <Link to="/signup">Sign Up</Link>
       </div>

@@ -3,15 +3,30 @@ import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import products from './products';
+import cart from './cart';
 import users from './users';
 
-const reducer = combineReducers({ products, users });
+import singleProduct from './singleProduct';
+
+const reducer = combineReducers({
+  products,
+  singleProduct,
+  cart,
+  users,
+});
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
 
 const store = createStore(reducer, middleware);
+
+store.subscribe(() => {
+  const state = store.getState();
+  localStorage.setItem('cart', JSON.stringify(state.cart));
+});
+
+//optimisation note: change to only update local storage when the cart changes
 
 export default store;
 export * from './users';
