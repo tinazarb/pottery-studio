@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap');
+
 body {
   font-family: sans-serif;
 }
@@ -19,19 +21,76 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+/* NAVBAR & FOOTER */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
 .footer {
   display: flex;
   justify-content: center;
 }
+
 footer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.navbar {
+
+/* SINGLE PRODUCT VIEW */
+
+.single-product-content {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.single-product-content .title {
+  margin: 20px 0;
+}
+
+.single-product-content .price {
+  color: #d39850;
+  font-size: 26px;
+}
+
+
+.single-product-content .quantity {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-product-content .quantity input{
+  margin-left: 10px;
+}
+
+.single-product-content button {
+  margin: 30px 0;
+  background-color:black;
+  color: white;
+}
+
+.single-product-content button:hover {
+  background-color:white;
+  color: #d39850;
+}
+
+.single-product-content .description {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.single-product-content .description span {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .list-image,
@@ -78,3 +137,4 @@ ion-icon:active {
 #subtotal {
   text-align: right;
 }
+

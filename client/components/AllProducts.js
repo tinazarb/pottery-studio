@@ -17,6 +17,7 @@ export class AllProducts extends React.Component {
     return (
       <div>
         <h2>Products</h2>
+
         <div className="product-list">
           <ul>
             {products.map((product) => (
@@ -42,6 +43,7 @@ export class AllProducts extends React.Component {
             ))}
           </ul>
         </div>
+
       </div>
     );
   }
