@@ -59,6 +59,7 @@ footer {
   font-size: 26px;
 }
 
+
 .single-product-content .quantity {
   display: flex;
   flex-direction: row;
@@ -91,3 +92,49 @@ footer {
   font-size: 18px;
   font-weight: bold;
 }
+
+.list-image,
+.cart-item-image {
+  object-fit: cover;
+  width: 300px;
+  height: 300px;
+  border-radius: 8px;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Cart Component Specific CSS */
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+
+.cart-item-title {
+  flex-grow: 1;
+}
+
+.add-minus-button-container {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+ion-icon {
+  height: 30px;
+  width: 30px;
+}
+
+ion-icon:active {
+  transform: scale(0.88);
+}
+
+#subtotal {
+  text-align: right;
+}
+
