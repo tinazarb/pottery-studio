@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { fetchProducts } from '../store/products';
+
 
 import { fetchProducts } from '../store/products';
 import { incrementItem } from '../store/cart';
