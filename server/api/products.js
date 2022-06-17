@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Product } = require('../db/index');
+const { Product, User } = require('../db/index');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -10,17 +10,27 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-
 // ******************************
 //  GET /api/products/:id
 // ******************************
 router.get('/:id', async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id);
-    res.json(product)
+    res.json(product);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
+
+//POST api/products
+router.post('/', async (req, res, next) => {
+  try {
+    if (User.isAdmin === true) {
+      res.status(201).send(await Product.create(req.body));
+    }
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;
