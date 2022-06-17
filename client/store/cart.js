@@ -19,7 +19,7 @@ export const decrementItem = (productId) => {
 //initial cart state comes from localStorage if there is any
 //anytime you update the redux cart, update localStorage
 
-const initialState = JSON.parse(localStorage.getItem('cart'));
+const initialState = JSON.parse(localStorage.getItem('cart')) || {};
 
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {

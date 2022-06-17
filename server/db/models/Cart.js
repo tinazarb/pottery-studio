@@ -14,4 +14,4 @@ const Cart = db.define('cart', {
 });
 module.exports = Cart;
 
-// convert pennies to dollar amount?
+

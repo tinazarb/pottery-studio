@@ -6,8 +6,8 @@ const Product = require('./models/Product');
 const User = require('./models/User');
 const Cart = require('./models/Cart');
 
-Cart.hasMany(Product)
-Product.hasMany(Cart)
+Cart.belongsToMany(Product, { through: 'Cart_Product'})
+Product.belongsToMany(Cart, { through: 'Cart_Product' })
 User.hasMany(Product)
 
 module.exports = {
