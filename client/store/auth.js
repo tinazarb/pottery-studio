@@ -43,6 +43,20 @@ export const autoLogin = (token) => {
   };
 };
 
+//creates a new user in the uesr model
+export const createUser = (user, history) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post('/api/users', user);
+      dispatch(setAuth(data));
+      localStorage.setItem('token', data.token);
+      history.push('/');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 /**
  * REDUCER
  */

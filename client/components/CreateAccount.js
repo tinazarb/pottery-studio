@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { createUser } from '../store/users';
+import { createUser } from '../store/auth';
 
+//add isAdmin -- and set default to false
 class CreateAccount extends React.Component {
   constructor() {
     super();

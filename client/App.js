@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Home from '../client/components/Home';
 import Navbar from '../client/components/Navbar';
@@ -12,26 +13,41 @@ import CreateAccount from './components/CreateAccount';
 
 import { autoLogin } from './store/auth';
 
-const App = () => {
-  return (
-    <Router>
-      <div>
-        <Navbar />
-        <main>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/shop" component={AllProducts} />
-            <Route exact path="/products/:id" component={SingleProduct} />
-            <Route exact path="/cart" component={Cart} />
-            {/* LK: will eventually need to set up so these routes are not available to loggedin users */}
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={CreateAccount} />
-          </Switch>
-          <Footer />
-        </main>
-      </div>
-    </Router>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.props.autoLogin(token);
+    }
+  }
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <Navbar />
+          <main>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/shop" component={AllProducts} />
+              <Route exact path="/products/:id" component={SingleProduct} />
+              <Route exact path="/cart" component={Cart} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={CreateAccount} />
+            </Switch>
+            <Footer />
+          </main>
+        </div>
+      </Router>
+    );
+  }
+}
+
+const mapState = (state) => ({ auth: state.auth });
+const mapDispatch = (dispatch) => {
+  return {
+    autoLogin: (token) => dispatch(autoLogin(token)),
+  };
 };
 
-export default App;
+export default connect(mapState, mapDispatch)(App);

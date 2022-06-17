@@ -5,7 +5,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import products from './products';
 import cart from './cart';
-import users from './users';
 import singleProduct from './singleProduct';
 import auth from './auth';
 
@@ -14,7 +13,6 @@ const reducer = combineReducers({
   products,
   singleProduct,
   cart,
-  users,
   auth,
 });
 
@@ -32,4 +30,3 @@ store.subscribe(() => {
 //optimisation note: change to only update local storage when the cart changes
 
 export default store;
-export * from './users';
