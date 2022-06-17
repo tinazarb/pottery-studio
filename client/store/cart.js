@@ -3,10 +3,11 @@ import axios from 'axios';
 const INCREMENT_QTY = 'INCREMENT_QTY';
 const DECREMENT_QTY = 'DECREMENT_QTY';
 
-export const incrementItem = (productId) => {
+export const incrementItem = (productId, quantity = 1) => {
   return {
     type: INCREMENT_QTY,
     productId,
+    quantity,
   };
 };
 
@@ -25,11 +26,14 @@ export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case INCREMENT_QTY:
       if (state === null) {
-        return { ...state, [action.productId]: 1 };
+        return { ...state, [action.productId]: action.quantity };
       } else if (action.productId in state) {
-        return { ...state, [action.productId]: state[action.productId] + 1 };
+        return {
+          ...state,
+          [action.productId]: state[action.productId] + action.quantity,
+        };
       } else {
-        return { ...state, [action.productId]: 1 };
+        return { ...state, [action.productId]: action.quantity };
       }
     case DECREMENT_QTY:
       if (state[action.productId] === 1) {
