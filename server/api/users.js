@@ -12,7 +12,7 @@ const { User } = require('../db/index');
 //   }
 // });
 
-//creates an account or user
+//creates an account/user
 router.post('/', async (req, res, next) => {
   try {
     const newUser = await User.create(req.body);

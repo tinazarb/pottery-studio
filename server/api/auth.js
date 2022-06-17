@@ -3,7 +3,7 @@ const router = require('express').Router();
 const { User } = require('../db/index');
 const { requireToken } = require('../middleware');
 
-//auth post -- signing in
+//auth post -- signing in, creating a session
 router.post('/login', async (req, res, next) => {
   try {
     const user = await User.authenticate(req.body);

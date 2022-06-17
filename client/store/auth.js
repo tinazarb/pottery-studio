@@ -30,6 +30,8 @@ export const loginUser = (formData) => {
   };
 };
 
+//this thunk will run when the app first loads and
+//uses the token to login the user if they have logged in previously
 export const autoLogin = (token) => {
   return async (dispatch) => {
     try {
