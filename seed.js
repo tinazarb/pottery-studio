@@ -163,6 +163,7 @@ const users = [
   },
 ];
 
+
 const seed = async () => {
   try {
     await db.sync({ force: true });
