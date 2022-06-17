@@ -1,5 +1,9 @@
 const { LibManifestPlugin } = require('webpack');
-const { db, Product, User } = require('./server/db/index');
+const { db, Product, User, Cart } = require('./server/db/index');
+
+console.log('PRODUCT METHODS:', Object.keys(Product.prototype))
+console.log('USER METHODS:', Object.keys(User.prototype))
+console.log('CART METHODS:', Object.keys(Cart.prototype))
 
 const pottery = [
   {
@@ -163,6 +167,17 @@ const users = [
   },
 ];
 
+const carts = [
+  {
+    priceTotal: 1000,
+    isCart: true
+  },
+  {
+    priceTotal: 500,
+    isCart: true
+  }
+]
+
 
 const seed = async () => {
   try {
@@ -175,6 +190,11 @@ const seed = async () => {
     await Promise.all(
       users.map((user) => {
         return User.create(user);
+      })
+    );
+    await Promise.all(
+      carts.map((cart) => {
+        return Cart.create(cart);
       })
     );
   } catch (err) {
