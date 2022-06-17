@@ -11,6 +11,8 @@ const Product = db.define('product', {
   },
   description: {
     type: Sequelize.TEXT,
+    defaultValue:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia recusandae illo assumenda eos quos fuga non officia odio, minus asperiores cumque perspiciatis, in debitis ipsum consectetur nemo harum eum enim!',
   },
   type: {
     type: Sequelize.STRING,
