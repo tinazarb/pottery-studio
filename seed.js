@@ -1,4 +1,3 @@
-const { LibManifestPlugin } = require('webpack');
 const { db, Product, User, Cart } = require('./server/db/index');
 
 console.log('PRODUCT METHODS:', Object.keys(Product.prototype))

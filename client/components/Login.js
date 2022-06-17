@@ -27,33 +27,52 @@ class Login extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div>
-        <h2>Hello!</h2>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="email">
-              <small>Email</small>
-            </label>
-            <input
-              name="email"
-              onChange={this.handleChange}
-              type="text"
-              value={email}
-            />
-          </div>
-          <div>
-            <label htmlFor="password">
-              <small>Password</small>
-            </label>
-            <input
-              name="password"
-              onChange={this.handleChange}
-              type="password"
-              value={password}
-            />
-          </div>
-          <button type="submit">Login</button>
-        </form>
+      <div className="login-form-container">
+        <h2>Pottery Studio</h2>
+        <div>
+          <form className="login-form" onSubmit={this.handleSubmit}>
+            <div>
+              <label htmlFor="email" class="col-sm-2 col-form-label">
+                <small>Email</small>
+              </label>
+              <input
+                class="form-control"
+                name="email"
+                onChange={this.handleChange}
+                type="text"
+                value={email}
+              />
+            </div>
+            <div>
+              <label htmlFor="password" class="col-sm-2 col-form-label">
+                <small>Password</small>
+              </label>
+              <input
+                name="password"
+                onChange={this.handleChange}
+                type="password"
+                class="form-control"
+                value={password}
+              />
+            </div>
+            <div>
+              <button
+                className="form-button"
+                class="btn btn-dark"
+                type="submit"
+              >
+                Login
+              </button>
+              <button
+                className="form-button"
+                class="btn btn-dark"
+                type="button"
+              >
+                Forgot Password
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
