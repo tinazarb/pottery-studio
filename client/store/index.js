@@ -24,7 +24,7 @@ const store = createStore(reducer, middleware);
 
 store.subscribe(() => {
   const state = store.getState();
-  localStorage.setItem('cart', JSON.stringify(state.cart));
+  localStorage.setItem('cart', JSON.stringify(state.cart.products));
 });
 
 //optimisation note: change to only update local storage when the cart changes

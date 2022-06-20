@@ -61,7 +61,9 @@ export class Cart extends React.Component {
           </div>
           <div id="subtotal">Subtotal: ${this.getSubTotal()}</div>
           <div>
-            <Link to="/checkout">Proceed to Checkout</Link>
+            <Link class="btn btn-dark" to="/checkout">
+              Proceed to Checkout
+            </Link>
           </div>
         </div>
       </div>

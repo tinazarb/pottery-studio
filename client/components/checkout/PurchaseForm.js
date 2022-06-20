@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { checkout } from '../../store/guest';
+
 class PurchaseForm extends React.Component {
   constructor() {
     super();
@@ -25,6 +27,10 @@ class PurchaseForm extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
+    this.props.checkout(
+      { user: this.state, cart: this.props.cart },
+      this.props.history
+    );
   }
 
   render() {
@@ -32,9 +38,10 @@ class PurchaseForm extends React.Component {
       this.state;
 
     console.log(this.state);
+
     return (
       <div className="purchase-form-container">
-        <form className="purchase-form">
+        <form className="purchase-form" onSubmit={this.handleSubmit}>
           <div className="form-fields">
             <label>Email</label>
             <input
@@ -110,4 +117,6 @@ class PurchaseForm extends React.Component {
   }
 }
 
-export default connect(null, null)(PurchaseForm);
+const mapDispatch = { checkout };
+
+export default connect(null, mapDispatch)(PurchaseForm);

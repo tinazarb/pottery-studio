@@ -16,7 +16,7 @@ class Checkout extends React.Component {
       <div>
         <h1>Checkout</h1>
         <div className="checkout-container">
-          <PurchaseForm />
+          <PurchaseForm cart={this.props.cart} />
           <CheckoutCart cart={this.props.cart} products={this.props.products} />
         </div>
       </div>

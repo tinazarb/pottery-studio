@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../db/index');
 
-//creates an account/user
+//creates a guest user
 router.post('/', async (req, res, next) => {
   try {
     const newUser = await User.create(req.body);

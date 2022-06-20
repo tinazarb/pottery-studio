@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+//change to functional component
 class CheckoutCart extends React.Component {
   render() {
     console.log('CART:', this.props.cart);
