@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { fetchProducts } from '../store/products';
 import { incrementItem } from '../store/cart';
 
+import CreateProduct from './admin/CreateProduct';
+
 export class AllProducts extends React.Component {
   componentDidMount() {
     this.props.getProducts();
@@ -15,7 +17,7 @@ export class AllProducts extends React.Component {
     return (
       <div>
         <h2>Products</h2>
-
+        <CreateProduct />
         <div className="product-list">
           <ul>
             {products.map((product) => (
@@ -36,8 +38,7 @@ export class AllProducts extends React.Component {
                   <button
                     type="button"
                     // need to check if item already exists in localStorage.
-                    onClick={() => this.props.incrementItem(product.id)}
-                  >
+                    onClick={() => this.props.incrementItem(product.id)}>
                     Purchase
                   </button>
                 </div>

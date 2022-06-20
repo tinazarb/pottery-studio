@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { createProduct } from '.../store/products';
+import { createProduct } from '../../store/products';
 
 class CreateProduct extends React.Component {
   constructor() {
@@ -27,12 +27,22 @@ class CreateProduct extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.createProduct(this.state, this.props.history);
+    this.props.createProduct(this.state);
+    this.setState({
+      title: '',
+      price: '',
+      description: '',
+      type: '',
+      quantity: '',
+      colour: '',
+      imgUrl: '',
+    });
   }
 
   render() {
     const { title, price, description, type, quantity, colour, imgUrl } =
       this.state;
+
     return (
       <div className="product-form">
         <form onSubmit={this.handleSubmit}>
@@ -76,7 +86,7 @@ class CreateProduct extends React.Component {
           <div>
             <label>Quantity</label>
             <input
-              name="type"
+              name="quantity"
               type="number"
               min="0"
               onChange={this.handleChange}
@@ -112,8 +122,7 @@ class CreateProduct extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createProduct: (formData, history) =>
-      dispatch(createProduct(formData, history)),
+    createProduct: (formData) => dispatch(createProduct(formData)),
   };
 };
 

@@ -25,9 +25,7 @@ router.get('/:id', async (req, res, next) => {
 //POST api/products
 router.post('/', async (req, res, next) => {
   try {
-    if (User.isAdmin === true) {
-      res.status(201).send(await Product.create(req.body));
-    }
+    res.status(201).send(await Product.create(req.body));
   } catch (error) {
     next(error);
   }

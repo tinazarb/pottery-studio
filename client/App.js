@@ -14,9 +14,9 @@ import CreateAccount from './components/CreateAccount';
 import { autoLogin } from './store/auth';
 
 // Admin
-import AdminHome from './components/admin/Home'
-// import AdminLogin from './components/admin/AdminLogin'
-import AllUsers from './components/admin/AllUsers'
+import AdminHome from './components/admin/Home';
+// import AdminLogin from './components/admin/AdminLogin';
+import AllUsers from './components/admin/AllUsers';
 
 class App extends React.Component {
   componentDidMount() {
@@ -40,7 +40,7 @@ class App extends React.Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={CreateAccount} />
               <Route exact path="/admin" component={AdminHome} />
-              {/* <Route exact path="/auth/login" component={AdminLogin} /> */}
+              {/* <Route exact path="/admin/login" component={AdminLogin} /> */}
               <Route exact path="/admin/users" component={AllUsers} />
             </Switch>
             <Footer />
