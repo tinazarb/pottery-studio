@@ -29,7 +29,7 @@ class PurchaseForm extends React.Component {
     console.log(this.state);
     return (
       <div className="purchase-form-container">
-        <form>
+        <form className="purchase-form">
           <div className="form-fields">
             <label>Email</label>
             <input

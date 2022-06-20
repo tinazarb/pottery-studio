@@ -2,18 +2,35 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import PurchaseForm from './PurchaseForm';
+import CheckoutCart from './CheckoutCart';
+
+import { fetchProducts } from '../../store/products';
 
 class Checkout extends React.Component {
+  componentDidMount() {
+    this.props.getProducts();
+  }
+
   render() {
     return (
-      <div className="checkout-container">
+      <div>
         <h1>Checkout</h1>
-        <div>
+        <div className="checkout-container">
           <PurchaseForm />
+          <CheckoutCart cart={this.props.cart} products={this.props.products} />
         </div>
       </div>
     );
   }
 }
 
-export default connect(null, null)(Checkout);
+const mapState = (state) => ({
+  cart: state.cart,
+  products: state.products,
+});
+
+const mapDispatch = (dispatch) => ({
+  getProducts: () => dispatch(fetchProducts()),
+});
+
+export default connect(mapState, mapDispatch)(Checkout);
