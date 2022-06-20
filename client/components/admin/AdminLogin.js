@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loginUser } from '../store/auth';
+import { loginUser } from '../../store/auth';
 
 class AdminLogin extends React.Component {
   constructor() {
@@ -21,7 +21,7 @@ class AdminLogin extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.loginUser(this.state);
+    this.props.loginUser(this.state, this.props.history);
   }
 
   render() {
@@ -61,7 +61,7 @@ class AdminLogin extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginUser: (formData) => dispatch(loginUser(formData)),
+    loginUser: (formData, history) => dispatch(loginUser(formData, history)),
   };
 };
 

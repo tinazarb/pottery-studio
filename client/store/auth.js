@@ -1,5 +1,4 @@
 import axios from 'axios';
-import history from '../history';
 
 /**
  * ACTION TYPES
@@ -12,18 +11,29 @@ const CLEAR_AUTH = 'CLEAR_AUTH';
  */
 const setAuth = (auth) => ({ type: SET_AUTH, auth });
 export const logout = () => ({ type: CLEAR_AUTH });
-
+// export const logout = () => {
+//   localStorage.removeItem('token');
+//   history.push('/');
+//   return {
+//     type: SET_AUTH,
+//     auth: {},
+//   };
+// };
 /**
  * THUNK CREATORS
  */
 
-export const loginUser = (formData) => {
+export const loginUser = (formData, history) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post('/api/auth/login', formData);
       dispatch(setAuth(data));
       localStorage.setItem('token', data.token);
-      history.push('/');
+      if (data.isAdmin === true) {
+        history.push('/admin');
+      } else {
+        history.push('/');
+      }
     } catch (err) {
       console.log(err);
     }

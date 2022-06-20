@@ -86,6 +86,7 @@ User.prototype.toJSON = function () {
     email: this.email,
     firstName: this.firstName,
     lastName: this.lastName,
+    isAdmin: this.isAdmin,
   };
 };
 

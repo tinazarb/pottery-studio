@@ -157,9 +157,10 @@ const users = [
   {
     firstName: 'Lisa',
     lastName: 'Forester',
-    email: 'lforester@gmail.com',
-    password: 'testing12345',
+    email: 'l@gmail.com',
+    password: '00',
     address: '22 Havemeyer St, Brooklyn, NY 11004',
+    isAdmin: true,
   },
 ];
 

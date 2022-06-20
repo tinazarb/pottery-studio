@@ -21,7 +21,7 @@ class Login extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.loginUser(this.state);
+    this.props.loginUser(this.state, this.props.history);
   }
 
   render() {
@@ -59,15 +59,13 @@ class Login extends React.Component {
               <button
                 className="form-button"
                 class="btn btn-dark"
-                type="submit"
-              >
+                type="submit">
                 Login
               </button>
               <button
                 className="form-button"
                 class="btn btn-dark"
-                type="button"
-              >
+                type="button">
                 Forgot Password
               </button>
             </div>
@@ -80,7 +78,7 @@ class Login extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginUser: (formData) => dispatch(loginUser(formData)),
+    loginUser: (formData, history) => dispatch(loginUser(formData, history)),
   };
 };
 
