@@ -168,14 +168,14 @@ const users = [
 
 const carts = [
   {
-    priceTotal: 1000,
     isCart: true
   },
   {
-    priceTotal: 500,
-    isCart: true
+    isCart: false
   }
 ]
+
+users
 
 
 const seed = async () => {
