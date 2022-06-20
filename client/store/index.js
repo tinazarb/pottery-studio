@@ -7,6 +7,7 @@ import products from './products';
 import cart from './cart';
 import singleProduct from './singleProduct';
 import auth from './auth';
+import users from './users';
 
 //FYI auth was not imported to global state
 const reducer = combineReducers({
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   singleProduct,
   cart,
   auth,
+  users
 });
 
 const middleware = composeWithDevTools(

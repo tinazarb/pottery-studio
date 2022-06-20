@@ -1,16 +1,17 @@
 const router = require('express').Router();
 const { User } = require('../db/index');
 
-// router.get('/users', async (req, res, next) => {
-//   try {
-//     if (User.isAdmin === true) {
-//       const products = await User.findAll();
-//       res.json(products);
-//     }
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+// GET /api/admin/users
+router.get('/users', async (req, res, next) => {
+  try {
+    // if (User.isAdmin === true) {
+      const users = await User.findAll();
+      res.json(users);
+    // }
+  } catch (err) {
+    next(err);
+  }
+});
 
 router.post('/', async (req, res, next) => {
   try {

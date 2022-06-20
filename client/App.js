@@ -13,6 +13,11 @@ import CreateAccount from './components/CreateAccount';
 
 import { autoLogin } from './store/auth';
 
+// Admin
+import AdminHome from './components/admin/Home'
+// import AdminLogin from './components/admin/AdminLogin'
+import AllUsers from './components/admin/AllUsers'
+
 class App extends React.Component {
   componentDidMount() {
     const token = localStorage.getItem('token');
@@ -34,6 +39,9 @@ class App extends React.Component {
               <Route exact path="/cart" component={Cart} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={CreateAccount} />
+              <Route exact path="/auth" component={AdminHome} />
+              {/* <Route exact path="/auth/login" component={AdminLogin} /> */}
+              <Route exact path="/auth/users" component={AllUsers} />
             </Switch>
             <Footer />
           </main>

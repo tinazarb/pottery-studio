@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from '../store/auth';
 
-class Login extends React.Component {
+class AdminLogin extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -65,4 +65,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(AdminLogin);
