@@ -11,6 +11,7 @@ import Footer from '../client/components/Footer';
 import Login from '../client/components/Login';
 import Cart from '../client/components/Cart';
 import CreateAccount from './components/CreateAccount';
+import Checkout from './components/Checkout';
 
 import { autoLogin } from './store/auth';
 
@@ -36,6 +37,7 @@ class App extends React.Component {
               <Route exact path="/cart" component={Cart} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={CreateAccount} />
+              <Route exact path="/checkout" component={Checkout} />
             </Switch>
             <Footer />
           </main>
