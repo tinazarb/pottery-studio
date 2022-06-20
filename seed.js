@@ -149,33 +149,33 @@ const pottery = [
   },
 ];
 
-const users = [
-  {
-    firstName: 'John',
-    lastName: 'Jones',
-    email: 'JohnJones@gmail.com',
-    password: 'testing12345',
-    address: '91 5th Ave, NY, NY 10011',
-  },
-  {
-    firstName: 'Lisa',
-    lastName: 'Forester',
-    email: 'lforester@gmail.com',
-    password: 'testing12345',
-    address: '22 Havemeyer St, Brooklyn, NY 11004',
-  },
-];
+// const users = [
+//   {
+//     firstName: 'John',
+//     lastName: 'Jones',
+//     email: 'JohnJones@gmail.com',
+//     password: 'testing12345',
+//     address: '91 5th Ave, NY, NY 10011',
+//   },
+  // {
+  //   firstName: 'Lisa',
+  //   lastName: 'Forester',
+  //   email: 'lforester@gmail.com',
+  //   password: 'testing12345',
+  //   address: '22 Havemeyer St, Brooklyn, NY 11004',
+  // },
+// ];
 
-const carts = [
-  {
-    isCart: true
-  },
-  {
-    isCart: false
-  }
-]
 
-users
+// const carts = [
+//   {
+//     isCart: true
+//   },
+//   {
+//     isCart: false
+//   }
+// ]
+
 
 
 const seed = async () => {
@@ -186,16 +186,42 @@ const seed = async () => {
         return Product.create(ceramic);
       })
     );
-    await Promise.all(
-      users.map((user) => {
-        return User.create(user);
-      })
-    );
-    await Promise.all(
-      carts.map((cart) => {
-        return Cart.create(cart);
-      })
-    );
+    // await Promise.all(
+    //   users.map((user) => {
+    //     return User.create(user);
+    //   })
+    // );
+    // await Promise.all(
+    //   carts.map((cart) => {
+    //     return Cart.create(cart);
+    //   })
+    // );
+    const trueCart = await Cart.create({
+      isCart: true
+    })
+    const falseCart = await Cart.create({
+      isCart: false
+    })
+    const john = await User.create(
+      {
+        firstName: 'John',
+        lastName: 'Jones',
+        email: 'JohnJones@gmail.com',
+        password: 'testing12345',
+        address: '91 5th Ave, NY, NY 10011'
+      }
+    )
+    const lisa = await User.create(
+      {
+          firstName: 'Lisa',
+          lastName: 'Forester',
+          email: 'lforester@gmail.com',
+          password: 'testing12345',
+          address: '22 Havemeyer St, Brooklyn, NY 11004',
+      }
+    )
+    await john.hasCart(trueCart)
+    await lisa.hasCart(falseCart)
   } catch (err) {
     console.log(err);
   }
