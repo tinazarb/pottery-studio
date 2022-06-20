@@ -1,5 +1,4 @@
 import axios from 'axios';
-import history from '../history';
 
 /**
  * ACTION TYPES
@@ -17,7 +16,7 @@ export const logout = () => ({ type: CLEAR_AUTH });
  * THUNK CREATORS
  */
 
-export const loginUser = (formData) => {
+export const loginUser = (formData, history) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post('/api/auth/login', formData);

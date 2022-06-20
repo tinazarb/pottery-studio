@@ -229,9 +229,24 @@ ion-icon:active {
   justify-content: space-around;
 }
 
+.checkoutCart-container {
+  border-radius: 8px;
+  border: gray;
+  border-style: solid;
+  border-width: thin;
+  padding: 10px;
+}
+
 .checkoutCart-item-img {
   object-fit: cover;
-  width: 150px;
-  height: 150px;
+  width: 75px;
+  height: 75px;
   border-radius: 8px;
+  margin: 5px;
+}
+
+.checkoutCart-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

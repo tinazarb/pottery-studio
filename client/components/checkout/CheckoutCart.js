@@ -12,20 +12,18 @@ class CheckoutCart extends React.Component {
 
     return (
       <div className="checkoutCart-container">
-        <div>
-          {Object.entries(this.props.cart).map((productArray) => {
-            const product = this.props.products.find(
-              (product) => product.id === parseInt(productArray[0], 10)
-            );
-            return (
-              <div>
-                <img className="checkoutCart-item-img" src={product.imgUrl} />
-                <div>{product.title}</div>
-                <div>{product.price}</div>
-              </div>
-            );
-          })}
-        </div>
+        {Object.entries(this.props.cart).map((productArray) => {
+          const product = this.props.products.find(
+            (product) => product.id === parseInt(productArray[0], 10)
+          );
+          return (
+            <div className="checkoutCart-items">
+              <img className="checkoutCart-item-img" src={product.imgUrl} />
+              <div>{product.title}</div>
+              <div>${product.price}</div>
+            </div>
+          );
+        })}
       </div>
     );
   }
