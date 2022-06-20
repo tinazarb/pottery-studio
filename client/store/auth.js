@@ -10,15 +10,12 @@ const CLEAR_AUTH = 'CLEAR_AUTH';
  * ACTION CREATORS
  */
 const setAuth = (auth) => ({ type: SET_AUTH, auth });
-export const logout = () => ({ type: CLEAR_AUTH });
-// export const logout = () => {
-//   localStorage.removeItem('token');
-//   history.push('/');
-//   return {
-//     type: SET_AUTH,
-//     auth: {},
-//   };
-// };
+
+export const logout = (history) => {
+  history.push('/');
+  return { type: CLEAR_AUTH };
+};
+
 /**
  * THUNK CREATORS
  */

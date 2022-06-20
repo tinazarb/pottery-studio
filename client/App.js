@@ -32,17 +32,28 @@ class App extends React.Component {
         <div>
           <Navbar />
           <main>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/shop" component={AllProducts} />
-              <Route exact path="/products/:id" component={SingleProduct} />
-              <Route exact path="/cart" component={Cart} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={CreateAccount} />
-              <Route exact path="/admin" component={AdminHome} />
-              <Route exact path="/admin/login" component={AdminLogin} />
-              <Route exact path="/admin/users" component={AllUsers} />
-            </Switch>
+            {state.auth.isAdmin === true ? (
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/shop" component={AllProducts} />
+                <Route exact path="/products/:id" component={SingleProduct} />
+                <Route exact path="/cart" component={Cart} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/signup" component={CreateAccount} />
+                <Route exact path="/admin" component={AdminHome} />
+                <Route exact path="/admin/login" component={AdminLogin} />
+                <Route exact path="/admin/users" component={AllUsers} />
+              </Switch>
+            ) : (
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/shop" component={AllProducts} />
+                <Route exact path="/products/:id" component={SingleProduct} />
+                <Route exact path="/cart" component={Cart} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/signup" component={CreateAccount} />
+              </Switch>
+            )}
             <Footer />
           </main>
         </div>
@@ -51,7 +62,11 @@ class App extends React.Component {
   }
 }
 
-const mapState = (state) => ({ auth: state.auth });
+const mapState = (state) => {
+  return {
+    auth: state.auth,
+  };
+};
 const mapDispatch = (dispatch) => {
   return {
     autoLogin: (token) => dispatch(autoLogin(token)),

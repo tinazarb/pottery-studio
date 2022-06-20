@@ -17,8 +17,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             onClick={() => {
               handleClick();
               localStorage.removeItem('token');
-            }}
-          >
+            }}>
             Logout
           </button>
         ) : (
@@ -39,10 +38,10 @@ const mapState = (state) => {
   };
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, { history }) => {
   return {
-    handleClick() {
-      dispatch(logout());
+    handleClick(history) {
+      dispatch(logout(history));
     },
   };
 };
