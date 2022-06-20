@@ -8,9 +8,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
     <nav>
       <div className="navbar">
         <Link to="/">Home</Link>
-
+        <Link to="/aboutus">About Us</Link>
         <Link to="/shop">Shop</Link>
-        <Link to="#">About Us</Link>
         <Link to="/cart">Cart</Link>
         {isLoggedIn ? (
           <button
