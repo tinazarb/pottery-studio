@@ -44,7 +44,7 @@ footer {
 .carousel-inner img {
   width: 100%;
   position: relative;
-  background-color: rgba(0,0,0,.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .carousel-item .overlay {
@@ -66,7 +66,7 @@ footer {
 
 #partner img {
   opacity: 0.7;
-  background-color: rgba(0,0,0,.7);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .carousel-item button {
@@ -182,16 +182,34 @@ ion-icon:active {
   align-items: stretch;
 }
 
-button {
-  margin: 10px;
-}
-
 .login-form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.login-form button {
+  margin: 30px 0;
+  background-color: black;
+  color: white;
+  margin: 8px;
+}
 
+.login-form button:hover {
+  background-color: white;
+  color: #d39850;
+}
 
+/* Checkout page */
 
+.purchase-form-container button {
+  margin: 30px 0;
+  background-color: black;
+  color: white;
+  margin: 8px;
+}
+
+.purchase-form-container button:hover {
+  background-color: white;
+  color: #d39850;
+}

@@ -11,7 +11,7 @@ import Footer from '../client/components/Footer';
 import Login from '../client/components/Login';
 import Cart from '../client/components/Cart';
 import CreateAccount from './components/CreateAccount';
-import Checkout from './components/Checkout';
+import Checkout from './components/checkout/Checkout';
 
 import { autoLogin } from './store/auth';
 
