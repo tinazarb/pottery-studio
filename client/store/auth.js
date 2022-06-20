@@ -11,8 +11,8 @@ const CLEAR_AUTH = 'CLEAR_AUTH';
  */
 const setAuth = (auth) => ({ type: SET_AUTH, auth });
 
-export const logout = (history) => {
-  history.push('/');
+export const logout = () => {
+  // history.push('/');
   return { type: CLEAR_AUTH };
 };
 

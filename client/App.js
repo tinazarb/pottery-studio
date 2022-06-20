@@ -27,12 +27,13 @@ class App extends React.Component {
   }
 
   render() {
+    console.log('THIS.PROPS', this.props)
     return (
       <Router>
         <div>
-          <Navbar />
+          <Navbar/>
           <main>
-            {state.auth.isAdmin === true ? (
+            {this.props.auth.isAdmin === true ? (
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/shop" component={AllProducts} />
@@ -46,6 +47,7 @@ class App extends React.Component {
               </Switch>
             ) : (
               <Switch>
+                <Route exact path="/admin/login" component={AdminLogin} />
                 <Route exact path="/" component={Home} />
                 <Route exact path="/shop" component={AllProducts} />
                 <Route exact path="/products/:id" component={SingleProduct} />
