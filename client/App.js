@@ -39,9 +39,9 @@ class App extends React.Component {
               <Route exact path="/cart" component={Cart} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={CreateAccount} />
-              <Route exact path="/auth" component={AdminHome} />
+              <Route exact path="/admin" component={AdminHome} />
               {/* <Route exact path="/auth/login" component={AdminLogin} /> */}
-              <Route exact path="/auth/users" component={AllUsers} />
+              <Route exact path="/admin/users" component={AllUsers} />
             </Switch>
             <Footer />
           </main>

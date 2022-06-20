@@ -10,6 +10,7 @@ const _setUsers = (users) => ({ type: SET_USERS, users})
 export const fetchUsers = () => {
   return async (dispatch) => {
     const { data: users } = await axios.get('/api/admin/users');
+    console.log("THUNK", users)
     dispatch(_setUsers(users));
   };
 };
