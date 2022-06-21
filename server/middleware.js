@@ -11,4 +11,13 @@ const requireToken = async (req, res, next) => {
   }
 };
 
-module.exports = { requireToken };
+// middleware that authenticates admin
+const isAdmin = (req, res, next) => {
+  try {
+    if(req.user.isAdmin === false) res.status(403);
+    next();
+  } catch (err) {
+    next(err)
+  }
+}
+module.exports = { requireToken, isAdmin };

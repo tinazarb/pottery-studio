@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../db/index');
+const { isAdmin } = require('../middleware')
 
 // router.get('/', async (req, res, next) => {
 //   try {
@@ -11,12 +12,10 @@ const { User } = require('../db/index');
 // });
 
 // GET /api/admin/users
-router.get('/users', async (req, res, next) => {
+router.get('/users', isAdmin, async (req, res, next) => {
   try {
-    // if (User.isAdmin === true) {
     const users = await User.findAll();
     res.json(users);
-    // }
   } catch (err) {
     next(err);
   }

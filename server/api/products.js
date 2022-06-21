@@ -1,7 +1,10 @@
 const router = require('express').Router();
 const { Product, User } = require('../db/index');
+const { isAdmin } = require('../middleware')
 
-router.get('/', async (req, res, next) => {
+
+// Get /api.products
+router.get('/', isAdmin, async (req, res, next) => {
   try {
     const products = await Product.findAll();
     res.json(products);

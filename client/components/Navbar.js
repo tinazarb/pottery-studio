@@ -3,34 +3,47 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store/auth';
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
-  <div>
-    <nav>
-      <div className="navbar">
-        <Link to="/">Home</Link>
+class Navbar extends React.Component {
+  constructor (props) {
+    super(props);
+  }
 
-        <Link to="/shop">Shop</Link>
-        <Link to="#">About Us</Link>
-        <Link to="/cart">Cart</Link>
-        {isLoggedIn ? (
-          <button
-            onClick={() => {
-              handleClick();
-              localStorage.removeItem('token');
-            }}>
-            Logout
-          </button>
-        ) : (
-          <>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
-          </>
-        )}
-      </div>
-    </nav>
-    <hr />
-  </div>
-);
+  render () {
+    const { handleClick, isLoggedIn } = this.props;
+
+      return (
+        <div>
+            <nav>
+              <div className="navbar">
+                <Link to="/">Home</Link>
+
+                <Link to="/shop">Shop</Link>
+                <Link to="#">About Us</Link>
+                <Link to="/cart">Cart</Link>
+                {isLoggedIn ? (
+                  <Link to="/">
+                  <button
+                    onClick={() => {
+                      handleClick();
+                      localStorage.removeItem('token');
+                    }}>
+                    Logout
+                  </button>
+                  </Link>
+                ) : (
+                  <>
+                    <Link to="/login">Login</Link>
+                    <Link to="/signup">Sign Up</Link>
+                  </>
+                )}
+              </div>
+            </nav>
+            <hr />
+          </div>
+      )
+
+  }
+};
 
 const mapState = (state) => {
   return {
