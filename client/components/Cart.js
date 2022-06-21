@@ -32,7 +32,9 @@ export class Cart extends React.Component {
       return <div>Your cart is currently empty</div>;
     }
 
-    console.log('cart', this.props.cart);
+    // if (!this.props.cart.products.isCart) {
+    //   return <div>Your cart is currently empty</div>;
+    // } else {
     return (
       <div className="cart-container">
         <div>
@@ -74,6 +76,7 @@ export class Cart extends React.Component {
         </div>
       </div>
     );
+    // }
   }
 }
 
