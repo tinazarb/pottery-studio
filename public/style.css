@@ -303,3 +303,14 @@ ion-icon:active {
   align-items: center;
   justify-content: space-between;
 }
+
+/* about us */
+
+.about-us-container {
+  text-align: center
+}
+
+.about-us-description {
+  margin: auto;
+  width: 50%;
+}
