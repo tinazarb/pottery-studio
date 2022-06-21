@@ -11,14 +11,18 @@ import Footer from '../client/components/Footer';
 import Login from '../client/components/Login';
 import Cart from '../client/components/Cart';
 import CreateAccount from './components/CreateAccount';
+import Checkout from './components/checkout/Checkout';
+import Confirmation from './components/checkout/Confirmation';
 
 import { autoLogin } from './store/auth';
+import { getCart } from './store/cart';
 
 class App extends React.Component {
   componentDidMount() {
     const token = localStorage.getItem('token');
     if (token) {
       this.props.autoLogin(token);
+      this.props.getCart(token);
     }
   }
 
@@ -36,6 +40,8 @@ class App extends React.Component {
               <Route exact path="/cart" component={Cart} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={CreateAccount} />
+              <Route exact path="/checkout" component={Checkout} />
+              <Route exact path="/confirmation" component={Confirmation} />
             </Switch>
             <Footer />
           </main>
@@ -49,6 +55,7 @@ const mapState = (state) => ({ auth: state.auth });
 const mapDispatch = (dispatch) => {
   return {
     autoLogin: (token) => dispatch(autoLogin(token)),
+    getCart: (token) => dispatch(getCart(token)),
   };
 };
 
