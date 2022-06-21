@@ -24,6 +24,7 @@ export class Cart extends React.Component {
   };
 
   render() {
+    console.log('checkout props', this.props);
     if (this.props.products.length === 0) {
       return <div>Loading...</div>;
     }
