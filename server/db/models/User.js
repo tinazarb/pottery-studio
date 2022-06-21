@@ -21,7 +21,6 @@ const User = db.define('user', {
     validate: {
       isEmail: true
     }
-
   },
   password: {
     type: STRING,
