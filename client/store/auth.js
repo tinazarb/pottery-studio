@@ -25,6 +25,7 @@ export const loginUser = (formData, history) => {
       localStorage.setItem('token', data.user.token);
 
       const cart = {
+        cartId: data.cart.id,
         isCart: data.cart.isCart,
         products: {},
       };
@@ -52,6 +53,7 @@ export const autoLogin = (token) => {
       dispatch(setAuth(data.user));
 
       const cart = {
+        cartId: data.cart.id,
         isCart: data.cart.isCart,
         products: {},
       };

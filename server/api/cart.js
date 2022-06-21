@@ -30,6 +30,7 @@ router.get('/', requireToken, async (req, res, next) => {
   }
 });
 
+router.put('/');
 // router.post('/cart', async (req, res, next) => {
 
 // })

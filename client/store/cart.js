@@ -41,6 +41,7 @@ export const getCart = (token) => {
         headers: { Authorization: token },
       });
       const cart = {
+        cartId: data.cartId,
         isCart: data.isCart,
         products: {},
       };
@@ -64,6 +65,7 @@ a users cart = {
 */
 
 const initialState = {
+  cartId: null,
   isCart: true,
   products: JSON.parse(localStorage.getItem('cart')),
 };
