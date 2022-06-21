@@ -37,6 +37,20 @@ export class Cart extends React.Component {
     }
   };
 
+  handleDecrement = (product) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.props.updateCart(
+        token,
+        this.props.cart.cartId,
+        product.id,
+        this.props.cart.products[product.id] - 1
+      );
+    } else {
+      this.props.decrementItem(product.id);
+    }
+  };
+
   render() {
     console.log('checkout props', this.props);
     if (this.props.products.length === 0) {
@@ -71,7 +85,7 @@ export class Cart extends React.Component {
                     ></ion-icon>
                     <ion-icon
                       name="remove-circle-outline"
-                      onClick={() => this.props.decrementItem(product.id)}
+                      onClick={() => this.handleDecrement(product)}
                     ></ion-icon>
                   </div>
                   <p>${product.price * productArray[1]}</p>

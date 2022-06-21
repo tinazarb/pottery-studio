@@ -84,6 +84,7 @@ export const updateCart = (token, cartId, productId, quantity) => {
 
 /*
 a users cart = {
+  cartId: id
   isCart: boolean,
   products: {id: qty, id: qty}
 }
@@ -121,9 +122,9 @@ export default function cartReducer(state = initialState, action) {
       }
     case DECREMENT_QTY:
       if (state.products[action.productId] === 1) {
-        let newstate = { ...state };
-        delete newstate.products[action.productId];
-        return newstate;
+        let newProducts = { ...state.products };
+        delete newProducts[action.productId];
+        return { ...state, products: newProducts };
       } else {
         return {
           ...state,
@@ -134,10 +135,17 @@ export default function cartReducer(state = initialState, action) {
         };
       }
     case UPDATE_QTY:
-      return {
-        ...state,
-        products: { ...state.products, [action.productId]: action.quantity },
-      };
+      if (action.quantity === 0) {
+        let newProducts = { ...state.products };
+        delete newProducts[action.productId];
+        return { ...state, products: newProducts };
+      } else {
+        return {
+          ...state,
+          products: { ...state.products, [action.productId]: action.quantity },
+        };
+      }
+
     case SET_CART:
       return action.cart;
     case CLEAR_CART:
