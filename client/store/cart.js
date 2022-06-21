@@ -5,6 +5,10 @@ const DECREMENT_QTY = 'DECREMENT_QTY';
 
 const SET_CART = 'SET_CART';
 
+const GET_CART = 'GET_CART';
+
+//logged in users thunk creator
+
 export const incrementItem = (productId, quantity = 1) => {
   return {
     type: INCREMENT_QTY,
@@ -24,6 +28,27 @@ export const setCart = (cart) => {
   return {
     type: SET_CART,
     cart,
+  };
+};
+
+export const getCart = (token) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get('/api/cart', {
+        headers: { Authorization: token },
+      });
+      const cart = {
+        isCart: data.isCart,
+        products: {},
+      };
+
+      for (const product of data.cart_products) {
+        cart.products[product.productId] = product.quantity;
+      }
+      dispatch(setCart(cart));
+    } catch (err) {
+      console.log(err);
+    }
   };
 };
 
