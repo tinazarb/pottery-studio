@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import { logout } from '../store/auth';
+import { clearCart } from '../store/cart';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
@@ -12,14 +14,17 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         <Link to="/shop">Shop</Link>
         <Link to="/cart">Cart</Link>
         {isLoggedIn ? (
-          <button
-            onClick={() => {
-              handleClick();
-              localStorage.removeItem('token');
-            }}
-          >
-            Logout
-          </button>
+          <Link to="/">
+            <button
+              onClick={() => {
+                handleClick();
+                localStorage.removeItem('token');
+                localStorage.removeItem('cart');
+              }}
+            >
+              Logout
+            </button>
+          </Link>
         ) : (
           <>
             <Link to="/login">Login</Link>
@@ -33,7 +38,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 );
 
 const mapState = (state) => {
-  console.log('state', state.auth);
   return {
     isLoggedIn: !!state.auth.token,
   };
@@ -43,6 +47,7 @@ const mapDispatch = (dispatch) => {
   return {
     handleClick() {
       dispatch(logout());
+      dispatch(clearCart());
     },
   };
 };

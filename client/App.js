@@ -15,14 +15,12 @@ import Checkout from './components/checkout/Checkout';
 import Confirmation from './components/checkout/Confirmation';
 
 import { autoLogin } from './store/auth';
-import { getCart } from './store/cart';
 
 class App extends React.Component {
   componentDidMount() {
     const token = localStorage.getItem('token');
     if (token) {
       this.props.autoLogin(token);
-      this.props.getCart(token);
     }
   }
 
@@ -55,7 +53,6 @@ const mapState = (state) => ({ auth: state.auth });
 const mapDispatch = (dispatch) => {
   return {
     autoLogin: (token) => dispatch(autoLogin(token)),
-    getCart: (token) => dispatch(getCart(token)),
   };
 };
 
