@@ -24,11 +24,18 @@ const seed = async () => {
       password: 'testing12345',
       address: '91 5th Ave, NY, NY 10011',
     });
+    const noCart = await User.create({
+      firstName: 'J',
+      lastName: 'J',
+      email: 'j@gmail.com',
+      password: 'jj',
+      address: '91 5th Ave, NY, NY 10011',
+    });
     const lisa = await User.create({
       firstName: 'Lisa',
       lastName: 'Forester',
-      email: 'lforester@gmail.com',
-      password: 'testing12345',
+      email: 'l@gmail.com',
+      password: '00',
       address: '22 Havemeyer St, Brooklyn, NY 11004',
     });
     const adminTest = await User.create({

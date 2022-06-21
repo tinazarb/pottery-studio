@@ -30,9 +30,23 @@ router.get('/', requireToken, async (req, res, next) => {
   }
 });
 
-router.put('/');
-// router.post('/cart', async (req, res, next) => {
 
-// })
+router.post('/:userId', requireToken, async (req, res, next) => {
+  try {
+    const postCart = await Cart.findOrCreate({
+      where: {
+        userId: req.user.id,
+        isCart: true
+      },
+      include: {
+        model: CartProduct
+      }
+    })
+    res.json(postCart)
+  } catch(err) {
+    next(err);
+  }
+})
+
 
 module.exports = router;
