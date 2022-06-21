@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const HomeSlider = () => {
   return (
     <div>
-      <div id="carouselControls" className="carousel slide container" data-bs-ride="carousel">
+      <div id="carouselControls" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner">
 
           <div className="carousel-item active">

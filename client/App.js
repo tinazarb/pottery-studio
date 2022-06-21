@@ -6,7 +6,6 @@ import Home from '../client/components/Home';
 import Navbar from '../client/components/Navbar';
 import AllProducts from '../client/components/AllProducts';
 import SingleProduct from '../client/components/SingleProduct';
-import Footer from '../client/components/Footer';
 import Login from '../client/components/Login';
 import Cart from '../client/components/Cart';
 import CreateAccount from './components/CreateAccount';
@@ -35,7 +34,6 @@ class App extends React.Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={CreateAccount} />
             </Switch>
-            <Footer />
           </main>
         </div>
       </Router>
