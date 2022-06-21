@@ -12,7 +12,7 @@ export class Cart extends React.Component {
 
   getSubTotal = () => {
     let total = 0;
-    Object.entries(this.props.cart).forEach((productArray) => {
+    Object.entries(this.props.cart.products).forEach((productArray) => {
       const product = this.props.products.find(
         (product) => product.id === parseInt(productArray[0], 10)
       );
@@ -27,12 +27,18 @@ export class Cart extends React.Component {
     if (this.props.products.length === 0) {
       return <div>Loading...</div>;
     }
+
+    if (this.props.cart.products === null) {
+      return <div>Your cart is currently empty</div>;
+    }
+
+    console.log('cart', this.props.cart);
     return (
       <div className="cart-container">
         <div>
           <h2>Your Cart</h2>
           <div>
-            {Object.entries(this.props.cart).map((productArray) => {
+            {Object.entries(this.props.cart.products).map((productArray) => {
               const product = this.props.products.find(
                 (product) => product.id === parseInt(productArray[0], 10)
               );

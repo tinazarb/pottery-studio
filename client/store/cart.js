@@ -41,12 +41,13 @@ export default function cartReducer(state = initialState, action) {
           ...state,
           products: { ...state.products, [action.productId]: action.quantity },
         };
-      } else if (action.productId in state) {
+      } else if (action.productId in state.products) {
         return {
           ...state,
           products: {
             ...state.products,
-            [action.productId]: state[action.productId] + action.quantity,
+            [action.productId]:
+              state.products[action.productId] + action.quantity,
           },
         };
       } else {
@@ -56,16 +57,16 @@ export default function cartReducer(state = initialState, action) {
         };
       }
     case DECREMENT_QTY:
-      if (state[action.productId] === 1) {
+      if (state.products[action.productId] === 1) {
         let newstate = { ...state };
-        delete newstate[action.productId];
+        delete newstate.products[action.productId];
         return newstate;
       } else {
         return {
           ...state,
           products: {
             ...state.products,
-            [action.productId]: state[action.productId] - 1,
+            [action.productId]: state.products[action.productId] - 1,
           },
         };
       }
