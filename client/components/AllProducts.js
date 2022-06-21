@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchProducts } from '../store/products';
 import { incrementItem } from '../store/cart';
-import CreateProduct from './admin/CreateProduct'
 import { autoLogin } from '../store/auth';
 
 export class AllProducts extends React.Component {
@@ -19,7 +18,9 @@ export class AllProducts extends React.Component {
         <h2>Products</h2>
         {this.props.auth.isAdmin === true ? (
           <div className="product-list">
-          <CreateProduct />
+          <Link to='/products/create'>
+            <button>Add a product</button>
+          </Link>
           <ul>
             {products.map((product) => (
               <div key={product.id}>

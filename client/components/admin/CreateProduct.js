@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { autoLogin } from '../../store/auth';
 import { createProduct } from '../../store/products';
 
 class CreateProduct extends React.Component {
@@ -45,6 +45,7 @@ class CreateProduct extends React.Component {
 
     return (
       <div className="product-form">
+         {this.props.auth.isAdmin ? (
         <form onSubmit={this.handleSubmit}>
           <div>
             <label>Title</label>
@@ -115,15 +116,21 @@ class CreateProduct extends React.Component {
             <button type="submit">Submit</button>
           </div>
         </form>
+         ) : null }
       </div>
     );
   }
 }
 
+const mapState = (state) => ({
+  auth: state.auth,
+});
+
 const mapDispatchToProps = (dispatch) => {
   return {
+    autoLogin: (token) => dispatch(autoLogin(token)),
     createProduct: (formData) => dispatch(createProduct(formData)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(CreateProduct);
+export default connect(mapState, mapDispatchToProps)(CreateProduct);

@@ -4,7 +4,7 @@ const { isAdmin } = require('../middleware')
 
 
 // Get /api.products
-router.get('/', isAdmin, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll();
     res.json(products);
@@ -26,7 +26,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 //POST api/products
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
   try {
     res.status(201).send(await Product.create(req.body));
   } catch (error) {
