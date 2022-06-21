@@ -7,6 +7,7 @@ import products from './products';
 import cart from './cart';
 import singleProduct from './singleProduct';
 import auth from './auth';
+import guest from './guest';
 
 //FYI auth was not imported to global state
 const reducer = combineReducers({
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   singleProduct,
   cart,
   auth,
+  guest,
 });
 
 const middleware = composeWithDevTools(
@@ -24,7 +26,7 @@ const store = createStore(reducer, middleware);
 
 store.subscribe(() => {
   const state = store.getState();
-  localStorage.setItem('cart', JSON.stringify(state.cart));
+  localStorage.setItem('cart', JSON.stringify(state.cart.products));
 });
 
 //optimisation note: change to only update local storage when the cart changes

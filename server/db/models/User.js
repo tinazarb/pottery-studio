@@ -18,16 +18,23 @@ const User = db.define('user', {
     type: STRING,
     allowNull: false,
     unique: true,
+    validate: {
+      isEmail: true
+    }
+
   },
   password: {
     type: STRING,
-    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
   address: {
     type: STRING,
   },
   isAdmin: {
     type: BOOLEAN,
+    defaultValue: false
   },
   token: {
     type: VIRTUAL,
@@ -74,9 +81,11 @@ User.authenticate = async ({ email, password }) => {
 
 //hook - before user is created, password is hashed
 User.beforeCreate(async (user) => {
-  const SALT_COUNT = 5;
-  const hashedPw = await bcrypt.hash(user.password, SALT_COUNT);
-  user.password = hashedPw;
+  if (user.password) {
+    const SALT_COUNT = 5;
+    const hashedPw = await bcrypt.hash(user.password, SALT_COUNT);
+    user.password = hashedPw;
+  }
 });
 
 //instance method -- returns a json object
