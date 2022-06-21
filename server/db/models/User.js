@@ -18,6 +18,10 @@ const User = db.define('user', {
     type: STRING,
     allowNull: false,
     unique: true,
+    validate: {
+      isEmail: true
+    }
+
   },
   password: {
     type: STRING,
@@ -28,6 +32,7 @@ const User = db.define('user', {
   },
   isAdmin: {
     type: BOOLEAN,
+    defaultValue: false
   },
   token: {
     type: VIRTUAL,
