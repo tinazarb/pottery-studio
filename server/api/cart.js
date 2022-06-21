@@ -30,7 +30,7 @@ router.get('/', requireToken, async (req, res, next) => {
   }
 });
 
-router.post('/:userId/cart', requireToken, async (req, res, next) => {
+router.post('/:userId', requireToken, async (req, res, next) => {
   try {
     const postCart = await Cart.findOrCreate({
       where: {
