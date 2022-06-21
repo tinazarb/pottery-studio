@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import { logout } from '../store/auth';
+import { clearCart } from '../store/cart';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
@@ -45,6 +47,7 @@ const mapDispatch = (dispatch) => {
   return {
     handleClick() {
       dispatch(logout());
+      dispatch(clearCart());
     },
   };
 };
