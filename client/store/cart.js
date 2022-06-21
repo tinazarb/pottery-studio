@@ -5,10 +5,19 @@ const DECREMENT_QTY = 'DECREMENT_QTY';
 
 const SET_CART = 'SET_CART';
 const CLEAR_CART = 'CLEAR_CART';
+const UPDATE_QTY = 'UPDATE_QTY';
 
 export const incrementItem = (productId, quantity = 1) => {
   return {
     type: INCREMENT_QTY,
+    productId,
+    quantity,
+  };
+};
+
+export const updateQty = (productId, quantity) => {
+  return {
+    type: UPDATE_QTY,
     productId,
     quantity,
   };
@@ -50,6 +59,23 @@ export const getCart = (token) => {
         cart.products[product.productId] = product.quantity;
       }
       dispatch(setCart(cart));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const updateCart = (token, cartId, productId, quantity) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(
+        `/api/cart/${cartId}`,
+        { productId, quantity },
+        {
+          headers: { Authorization: token },
+        }
+      );
+      dispatch(updateQty(data.productId, data.quantity));
     } catch (err) {
       console.log(err);
     }
@@ -107,6 +133,11 @@ export default function cartReducer(state = initialState, action) {
           },
         };
       }
+    case UPDATE_QTY:
+      return {
+        ...state,
+        products: { ...state.products, [action.productId]: action.quantity },
+      };
     case SET_CART:
       return action.cart;
     case CLEAR_CART:

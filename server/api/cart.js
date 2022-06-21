@@ -35,7 +35,7 @@ router.put('/:id', requireToken, async (req, res, next) => {
     //check if product exists in cart_products
     const cartId = req.params.id;
     //in req.body = {productId, qty}
-    const userCart = await CartProduct.findOrCreate({
+    const [userCart] = await CartProduct.findOrCreate({
       where: {
         cartId: cartId,
         productId: req.body.productId,
