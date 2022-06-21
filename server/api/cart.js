@@ -30,9 +30,24 @@ router.get('/', requireToken, async (req, res, next) => {
   }
 });
 
-router.put('/');
-// router.post('/cart', async (req, res, next) => {
+router.put('/:id', requireToken, async (req, res, next) => {
+  try {
+    //check if product exists in cart_products
+    const cartId = req.params.id;
+    //in req.body = {productId, qty}
+    const userCart = await CartProduct.findOrCreate({
+      where: {
+        cartId: cartId,
+        productId: req.body.productId,
+      },
+    });
+    await userCart.update({ quantity: req.body.quantity });
 
-// })
+    //sends the above object {cartId, productId, quantity}
+    res.json(userCart);
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;
