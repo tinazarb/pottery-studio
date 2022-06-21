@@ -25,7 +25,7 @@ export const checkout = (guestCart, history) => {
   };
 };
 
-const initialState = {};
+const initialState = null;
 
 export default function (state = initialState, action) {
   switch (action.type) {
