@@ -30,6 +30,7 @@ router.get('/', requireToken, async (req, res, next) => {
   }
 });
 
+
 router.post('/:userId', requireToken, async (req, res, next) => {
   try {
     const postCart = await Cart.findOrCreate({
@@ -46,5 +47,6 @@ router.post('/:userId', requireToken, async (req, res, next) => {
     next(err);
   }
 })
+
 
 module.exports = router;

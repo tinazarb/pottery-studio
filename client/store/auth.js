@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+import { setCart } from './cart';
 /**
  * ACTION TYPES
  */
@@ -20,8 +21,20 @@ export const loginUser = (formData, history) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post('/api/auth/login', formData);
-      dispatch(setAuth(data));
-      localStorage.setItem('token', data.token);
+      dispatch(setAuth(data.user));
+      localStorage.setItem('token', data.user.token);
+
+      const cart = {
+        cartId: data.cart.id,
+        isCart: data.cart.isCart,
+        products: {},
+      };
+
+      for (const product of data.cart.cart_products) {
+        cart.products[product.productId] = product.quantity;
+      }
+
+      dispatch(setCart(cart));
       history.push('/');
     } catch (err) {
       console.log(err);
@@ -37,7 +50,19 @@ export const autoLogin = (token) => {
       const { data } = await axios.get('/api/auth/me', {
         headers: { Authorization: token },
       });
-      dispatch(setAuth(data));
+      dispatch(setAuth(data.user));
+
+      const cart = {
+        cartId: data.cart.id,
+        isCart: data.cart.isCart,
+        products: {},
+      };
+
+      for (const product of data.cart.cart_products) {
+        cart.products[product.productId] = product.quantity;
+      }
+
+      dispatch(setCart(cart));
     } catch (err) {
       console.log(err);
     }

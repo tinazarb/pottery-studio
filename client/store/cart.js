@@ -4,10 +4,7 @@ const INCREMENT_QTY = 'INCREMENT_QTY';
 const DECREMENT_QTY = 'DECREMENT_QTY';
 
 const SET_CART = 'SET_CART';
-
-const GET_CART = 'GET_CART';
-
-//logged in users thunk creator
+const CLEAR_CART = 'CLEAR_CART';
 
 export const incrementItem = (productId, quantity = 1) => {
   return {
@@ -31,6 +28,12 @@ export const setCart = (cart) => {
   };
 };
 
+export const clearCart = () => {
+  return {
+    type: CLEAR_CART,
+  };
+};
+
 export const getCart = (token) => {
   return async (dispatch) => {
     try {
@@ -38,6 +41,7 @@ export const getCart = (token) => {
         headers: { Authorization: token },
       });
       const cart = {
+        cartId: data.cartId,
         isCart: data.isCart,
         products: {},
       };
@@ -61,6 +65,7 @@ a users cart = {
 */
 
 const initialState = {
+  cartId: null,
   isCart: true,
   products: JSON.parse(localStorage.getItem('cart')),
 };
@@ -104,6 +109,8 @@ export default function cartReducer(state = initialState, action) {
       }
     case SET_CART:
       return action.cart;
+    case CLEAR_CART:
+      return { ...state, products: {} };
     default:
       return state;
   }
