@@ -150,8 +150,8 @@ const users = [
   {
     firstName: 'John',
     lastName: 'Jones',
-    email: 'JohnJones@gmail.com',
-    password: 'testing12345',
+    email: 'j@gmail.com',
+    password: '11',
     address: '91 5th Ave, NY, NY 10011',
   },
   {
@@ -196,6 +196,3 @@ if (require.main === module) {
       db.close();
     });
 }
-
-
-
