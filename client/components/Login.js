@@ -32,11 +32,11 @@ class Login extends React.Component {
         <div>
           <form className="login-form" onSubmit={this.handleSubmit}>
             <div>
-              <label htmlFor="email" class="col-sm-2 col-form-label">
+              <label htmlFor="email" className="col-sm-2 col-form-label">
                 <small>Email</small>
               </label>
               <input
-                class="form-control"
+                className="form-control"
                 name="email"
                 onChange={this.handleChange}
                 type="text"
@@ -44,14 +44,14 @@ class Login extends React.Component {
               />
             </div>
             <div>
-              <label htmlFor="password" class="col-sm-2 col-form-label">
+              <label htmlFor="password" className="col-sm-2 col-form-label">
                 <small>Password</small>
               </label>
               <input
                 name="password"
                 onChange={this.handleChange}
                 type="password"
-                class="form-control"
+                className="form-control"
                 value={password}
               />
             </div>

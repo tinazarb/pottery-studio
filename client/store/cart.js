@@ -3,6 +3,8 @@ import axios from 'axios';
 const INCREMENT_QTY = 'INCREMENT_QTY';
 const DECREMENT_QTY = 'DECREMENT_QTY';
 
+const SET_CART = 'SET_CART';
+
 export const incrementItem = (productId, quantity = 1) => {
   return {
     type: INCREMENT_QTY,
@@ -17,8 +19,13 @@ export const decrementItem = (productId) => {
     productId,
   };
 };
-//initial cart state comes from localStorage if there is any
-//anytime you update the redux cart, update localStorage
+
+export const setCart = (cart) => {
+  return {
+    type: SET_CART,
+    cart,
+  };
+};
 
 /*
 a users cart = {
@@ -70,6 +77,8 @@ export default function cartReducer(state = initialState, action) {
           },
         };
       }
+    case SET_CART:
+      return action.cart;
     default:
       return state;
   }

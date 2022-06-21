@@ -28,7 +28,15 @@ class PurchaseForm extends React.Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.checkout(
-      { user: this.state, cart: this.props.cart },
+      {
+        user: {
+          email: this.state.email,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          address: `${this.state.addressLine}, ${this.state.state} ${this.state.zip}, ${this.state.country} `,
+        },
+        cart: this.props.cart,
+      },
       this.props.history
     );
   }
@@ -36,8 +44,6 @@ class PurchaseForm extends React.Component {
   render() {
     const { email, firstName, lastName, addressLine, country, zip, state } =
       this.state;
-
-    console.log(this.state);
 
     return (
       <div className="purchase-form-container">
@@ -51,12 +57,12 @@ class PurchaseForm extends React.Component {
               value={email}
             />
           </div>
-          <div class="row">
-            <div class="col">
+          <div className="row">
+            <div className="col">
               <label>First Name</label>
               <input
                 name="firstName"
-                class="form-control"
+                className="form-control"
                 onChange={this.handleChange}
                 value={firstName}
               />
@@ -66,7 +72,7 @@ class PurchaseForm extends React.Component {
               <label>Last Name</label>
               <input
                 name="lastName"
-                class="form-control"
+                className="form-control"
                 onChange={this.handleChange}
                 value={lastName}
               />
@@ -76,7 +82,7 @@ class PurchaseForm extends React.Component {
             <label>Address Line</label>
             <input
               name="addressLine"
-              class="form-control"
+              className="form-control"
               onChange={this.handleChange}
               value={addressLine}
             />
@@ -85,7 +91,7 @@ class PurchaseForm extends React.Component {
             <label>Country</label>
             <input
               name="country"
-              class="form-control"
+              className="form-control"
               onChange={this.handleChange}
               value={country}
             />
@@ -94,7 +100,7 @@ class PurchaseForm extends React.Component {
             <label>Zip</label>
             <input
               name="zip"
-              class="form-control"
+              className="form-control"
               onChange={this.handleChange}
               value={zip}
             />
@@ -103,12 +109,12 @@ class PurchaseForm extends React.Component {
             <label>State</label>
             <input
               name="state"
-              class="form-control"
+              className="form-control"
               onChange={this.handleChange}
               value={state}
             />
           </div>
-          <button class="btn btn-dark" type="submit">
+          <button className="btn btn-dark" type="submit">
             Checkout
           </button>
         </form>

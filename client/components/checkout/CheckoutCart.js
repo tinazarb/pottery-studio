@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 //change to functional component
 class CheckoutCart extends React.Component {
   render() {
-    console.log('CART:', this.props.cart);
-    console.log('products', this.props.products);
-
     if (this.props.products.length === 0) {
       return <div>Loading...</div>;
     }
@@ -18,7 +15,7 @@ class CheckoutCart extends React.Component {
             (product) => product.id === parseInt(productArray[0], 10)
           );
           return (
-            <div className="checkoutCart-items">
+            <div className="checkoutCart-items" key={product.id}>
               <img className="checkoutCart-item-img" src={product.imgUrl} />
               <div>{product.title}</div>
               <div>${product.price}</div>

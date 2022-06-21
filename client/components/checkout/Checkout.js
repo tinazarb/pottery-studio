@@ -12,12 +12,19 @@ class Checkout extends React.Component {
   }
 
   render() {
+    console.log('props', this.props);
     return (
       <div>
         <h1>Checkout</h1>
         <div className="checkout-container">
-          <PurchaseForm cart={this.props.cart} />
-          <CheckoutCart cart={this.props.cart} products={this.props.products} />
+          <PurchaseForm
+            cart={this.props.cart.products}
+            history={this.props.history}
+          />
+          <CheckoutCart
+            cart={this.props.cart.products}
+            products={this.props.products}
+          />
         </div>
       </div>
     );

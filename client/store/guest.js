@@ -1,21 +1,37 @@
 import axios from 'axios';
 
-const POST_USER = 'POST_USER';
+import { setCart } from './cart';
 
-export const postUser = (user) => {
+const SET_USER = 'SET_USER';
+
+export const setUser = (user) => {
   return {
-    type: POST_USER,
+    type: SET_USER,
     user,
   };
 };
 
-//is the assumption on the checkout page i want to pull from the cart table?
 export const checkout = (guestCart, history) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post('/api/guest', guestCart);
+      console.log('confirmation', data);
+      dispatch(setUser(data.user));
+      dispatch(setCart(data.cart));
+      history.push('/confirmation');
     } catch (err) {
       console.log(err);
     }
   };
 };
+
+const initialState = {};
+
+export default function (state = initialState, action) {
+  switch (action.type) {
+    case SET_USER:
+      return action.user;
+    default:
+      return state;
+  }
+}
