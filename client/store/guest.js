@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { setCart } from './cart';
+// import { setCart } from './cart';
 
 const SET_GUEST = 'SET_GUEST';
 
