@@ -27,14 +27,15 @@ class AdminLogin extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div>
-        <h2>Hello!</h2>
-        <form onSubmit={this.handleSubmit}>
+      <div className="contianer admin-login-form-container">
+        <h2>Management System</h2>
+        <form className="admin-login-form" onSubmit={this.handleSubmit}>
           <div>
-            <label htmlFor="email">
+            <label htmlFor="email" className="form-label">
               <small>Email</small>
             </label>
             <input
+              className="form-control"
               name="email"
               onChange={this.handleChange}
               type="text"
@@ -42,17 +43,18 @@ class AdminLogin extends React.Component {
             />
           </div>
           <div>
-            <label htmlFor="password">
+            <label htmlFor="password" className="form-label">
               <small>Password</small>
             </label>
             <input
+              className="form-control"
               name="password"
               onChange={this.handleChange}
               type="password"
               value={password}
             />
           </div>
-          <button type="submit">Login</button>
+          <button className="form-button btn btn-dark" type="submit">Login</button>
         </form>
       </div>
     );

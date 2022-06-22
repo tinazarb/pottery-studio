@@ -6,12 +6,22 @@ import { autoLogin } from '../../store/auth';
 class AdminHome extends React.Component {
   render() {
     return (
-      <div>
+      <div className="admin-home-container">
         {this.props.auth.isAdmin ? (
-          <div>
-            <Link to="/admin/users">Manage Users</Link>
-            <br></br>
-            <Link to="/shop">Manage Products</Link>
+          <div className="row d-flex justify-content-center">
+            <div className="card mx-5 col-6" style={{width: '18rem'}}>
+              <img src="user.svg" className="card-img-top" alt="..."/>
+              <div className="card-body">
+                <Link to="/admin/users" className="btn btn-dark d-flex justify-content-center">Manage Users</Link>
+              </div>
+            </div>
+
+            <div className="card mx-5 col-6" style={{width: '18rem'}}>
+              <img src="management.svg" className="card-img-top mt-4" alt="..."/>
+              <div className="card-body">
+                <Link to="/shop" className="btn btn-dark mt-4 d-flex justify-content-center">Manage Products</Link>
+              </div>
+            </div>
           </div>
         ) : null}
       </div>

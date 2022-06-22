@@ -5,7 +5,7 @@ const SET_SINGLE_PRODUCT = 'SET_SINGLE_PRODUCT';
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 
 // Action Creators
-const _setSingleProduct = (product) => {
+export const _setSingleProduct = (product) => {
   return {
     type: SET_SINGLE_PRODUCT,
     product,
@@ -25,7 +25,7 @@ export const fetchSingleProduct = (id) => {
   };
 };
 
-export const updateProduct = (product) => {
+export const updateProduct = (product, history) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token');
@@ -39,6 +39,7 @@ export const updateProduct = (product) => {
         }
       );
       dispatch(updatedProduct(updated));
+      history.push('/shop')
     } catch (err) {
       console.log(err);
     }

@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Product, User } = require('../db/index');
 const { requireToken, isAdmin } = require('../middleware');
 
-// Get /api.products
+// GET /api.products
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll();
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-//POST api/products
+// POST api/products
 router.post('/', requireToken, isAdmin, async (req, res, next) => {
   try {
     res.status(201).send(await Product.create(req.body));

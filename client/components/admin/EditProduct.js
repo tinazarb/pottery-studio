@@ -1,36 +1,47 @@
 import React, { Component } from 'react';
-import { updateProduct } from '../../store/singleProduct';
+import { _setSingleProduct, fetchSingleProduct, updateProduct } from '../../store/singleProduct';
 import { connect } from 'react-redux';
+import ProductForm from './ProductForm'
 
 class EditProduct extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      title: this.props.productKey.title || '',
-      price: this.props.productKey.price || '',
-      description: this.props.productKey.description || '',
-      type: this.props.productKey.type || '',
-      quantity: this.props.productKey.quantity || '',
-      colour: this.props.productKey.colour || '',
-      imgUrl: this.props.productKey.imgUrl || '',
+      title: '',
+      price: 0,
+      description: '',
+      type: '',
+      quantity: 0,
+      colour: '',
+      imgUrl: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount () {
+    this.props.loadSingleProduct(this.props.match.params.id)
+    console.log('PRODUCT', this.props.product)
+  }
+
+  componentWillUnmount() {
+    this.props.clearProduct();
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       this.setState({
         title: this.props.product.title || '',
-        price: this.props.product.price || '',
+        price: this.props.product.price || 0,
         description: this.props.product.description || '',
         type: this.props.product.type || '',
-        quantity: this.props.product.quantity || '',
+        quantity: this.props.product.quantity || 0,
         colour: this.props.product.colour || '',
         imgUrl: this.props.product.imgUrl || '',
       });
     }
+    console.log('componentDidUpdate state', this.state)
   }
 
   handleChange(evt) {
@@ -41,100 +52,29 @@ class EditProduct extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.updateProduct({ ...this.props.productKey, ...this.state });
+    this.props.updateProduct({ ...this.props.product, ...this.state });
   }
 
   render() {
-    const { title, price, description, type, quantity, colour, imgUrl } =
-      this.state;
+    const { title, price, description, type, quantity, colour, imgUrl } = this.state;
+
     return (
-      <div>
-        <br />
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label>Title</label>
-            <input
-              name="title"
-              type="text"
-              onChange={this.handleChange}
-              value={title}
-            />
-          </div>
-          <div>
-            <label>Price</label>
-            <input
-              name="price"
-              type="number"
-              min="0"
-              onChange={this.handleChange}
-              value={price}
-            />
-          </div>
-          <div>
-            <label>Description</label>
-            <input
-              name="description"
-              type="text"
-              onChange={this.handleChange}
-              value={description}
-            />
-          </div>
-          <div>
-            <label>Type</label>
-            <input
-              name="type"
-              type="text"
-              onChange={this.handleChange}
-              value={type}
-            />
-          </div>
-          <div>
-            <label>Quantity</label>
-            <input
-              name="quantity"
-              type="number"
-              min="0"
-              onChange={this.handleChange}
-              value={quantity}
-            />
-          </div>
-          <div>
-            <label>Colour</label>
-            <input
-              name="colour"
-              type="text"
-              onChange={this.handleChange}
-              value={colour}
-            />
-          </div>
-          <div>
-            <label>ImgURL</label>
-            <input
-              name="imgUrl"
-              type="text"
-              onChange={this.handleChange}
-              value={imgUrl}
-            />
-          </div>
-          <div>
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-      </div>
-    );
-  }
+      <ProductForm title={title} price={price} description={description} type={type} quantity={quantity} colour={colour} imgUrl={imgUrl} handleChange={this.handleChange} handleSubmit={this.handleSubmit} buttonName={'Update'}/>
+    )
+    }
 }
 
 const mapStateToProps = (state) => {
   return {
-    product: state.product,
+    product: state.singleProduct,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  //   console.log('DISPATCH PRODUCT', product);
+const mapDispatchToProps = (dispatch, {history}) => {
   return {
-    updateProduct: (product) => dispatch(updateProduct(product)),
+    loadSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
+    updateProduct: (product) => dispatch(updateProduct(product, history)),
+    clearProduct: () => dispatch(_setSingleProduct({}))
   };
 };
 

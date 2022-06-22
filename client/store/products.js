@@ -49,7 +49,7 @@ export const createProduct = (product, history) => {
   };
 };
 
-export const deleteProduct = (id, history) => {
+export const deleteProduct = (id) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token');
@@ -59,7 +59,6 @@ export const deleteProduct = (id, history) => {
         },
       });
       dispatch(deletedProduct(product));
-      history.push('/shop');
     } catch (err) {
       console.log(err);
     }
