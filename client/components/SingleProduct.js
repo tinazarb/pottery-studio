@@ -58,7 +58,7 @@ class SingleProduct extends React.Component {
             <p className="price">${price}</p>
 
             <div className="quantity">
-              <label for="quantity">QUANTITY:</label>
+              <label htmlFor="quantity">QUANTITY:</label>
               <input
                 type="number"
                 id="quantity"
@@ -71,10 +71,10 @@ class SingleProduct extends React.Component {
             </div>
 
             <button
-              class="btn btn-dark"
+              className="btn btn-dark"
               onClick={() => this.handleIncrement(this.props.product)}
             >
-              ADD TO CART <i class="bi bi-cart"></i>
+              ADD TO CART <i className="bi bi-cart"></i>
             </button>
 
             <div className="description">

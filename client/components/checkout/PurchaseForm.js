@@ -63,7 +63,7 @@ class PurchaseForm extends React.Component {
             <label>Email</label>
             <input
               name="email"
-              class="form-control"
+              className="form-control"
               onChange={this.handleChange}
               value={email}
             />
@@ -79,7 +79,7 @@ class PurchaseForm extends React.Component {
               />
             </div>
 
-            <div class="col">
+            <div className="col">
               <label>Last Name</label>
               <input
                 name="lastName"

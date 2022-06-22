@@ -56,18 +56,10 @@ class Login extends React.Component {
               />
             </div>
             <div>
-              <button
-                className="form-button"
-                class="btn btn-dark"
-                type="submit"
-              >
+              <button className="btn btn-dark" type="submit">
                 Login
               </button>
-              <button
-                className="form-button"
-                class="btn btn-dark"
-                type="button"
-              >
+              <button className="btn btn-dark" type="button">
                 Forgot Password
               </button>
             </div>

@@ -31,6 +31,7 @@ class CreateAccount extends React.Component {
     const { email, password, firstName, lastName } = this.state;
     return (
       <div>
+        <h2 id="create-account-title">Create a New Account</h2>
         <form className="account-form" onSubmit={this.handleSubmit}>
           <div>
             <label className="col-sm-2 col-form-label">First Name</label>

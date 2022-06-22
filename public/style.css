@@ -311,6 +311,11 @@ ion-icon:active {
   align-items: center;
 }
 
+#create-account-title {
+  text-align: center;
+  margin: 10px;
+}
+
 /* Checkout page */
 
 #checkout-title {
