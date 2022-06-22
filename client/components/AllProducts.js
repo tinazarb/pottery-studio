@@ -20,10 +20,7 @@ export class AllProducts extends React.Component {
         <h2>Products</h2>
         {this.props.auth.isAdmin === true ? (
           <div className="product-list">
-            <Link to="/products/create">
-              <button>Add a product</button>
-            </Link>
-
+            <CreateProduct />
             <ul>
               {products.map((product) => (
                 <div key={product.id}>
@@ -39,7 +36,7 @@ export class AllProducts extends React.Component {
                     <p className="quantity">quantity: {product.quantity}</p>
                   </div>
                   <div>
-                    {/* <EditProduct productKey={product} id={product.id} /> */}
+                    <EditProduct productKey={product} id={product.id} />
                   </div>
                   <div>
                     <DeleteProduct id={product.id} />
