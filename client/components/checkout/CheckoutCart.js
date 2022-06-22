@@ -17,9 +17,11 @@ class CheckoutCart extends React.Component {
           return (
             <div className="checkoutCart-items" key={product.id}>
               <img className="checkoutCart-item-img" src={product.imgUrl} />
-              <div>{product.title}</div>
-              <div>{productArray[1]}</div>
-              <div>${product.price * parseInt(productArray[1])}</div>
+              <div className="checkoutCart-item">{product.title}</div>
+              <div className="checkoutCart-item">{productArray[1]}</div>
+              <div className="checkoutCart-item">
+                ${product.price * parseInt(productArray[1])}
+              </div>
             </div>
           );
         })}
