@@ -76,7 +76,7 @@ class Navbar extends React.Component {
 
             <ul className="navbar-nav">
               {this.props.isLoggedIn ? (
-                <Link to="/">
+                <Link className="nav-link" to="/">
                   <button
                     onClick={() => {
                       this.props.handleClick();
@@ -84,7 +84,7 @@ class Navbar extends React.Component {
                       localStorage.removeItem('cart');
                     }}
                   >
-                    Logout
+                    Logout <i class="bi bi-box-arrow-right"></i>
                   </button>
                 </Link>
               ) : (

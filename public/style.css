@@ -154,6 +154,10 @@ footer {
 
 /* SINGLE PRODUCT VIEW */
 
+.single-product-container {
+  margin-top: 35px;
+}
+
 .single-product-content {
   display: flex;
   flex-direction: column;
@@ -284,6 +288,7 @@ ion-icon:active {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 150px;
 }
 
 .login-form button {
@@ -298,28 +303,27 @@ ion-icon:active {
   color: #d39850;
 }
 
-/* create an account */
-.account-form button {
-  margin: 30px 0;
-  background-color: black;
-  color: white;
-  margin: 8px;
+/* SIGN UP PAGE */
+.signup-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 150px;
 }
 
-.account-form button:hover {
-  background-color: white;
-  color: #d39850;
+.signup-form-container h2 {
+  padding-bottom: 10px;
 }
 
-.account-form {
+.signup-form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#create-account-title {
-  text-align: center;
-  margin: 10px;
+.signup-form button:hover {
+  background-color: white;
+  color: #d39850;
 }
 
 /* Checkout page */

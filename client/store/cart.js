@@ -90,7 +90,7 @@ export const userCheckout = (token, cartId, history) => {
       });
 
       const cart = {
-        cartId: data.cartId,
+        cartId: data.id,
         isCart: data.isCart,
         products: {},
       };

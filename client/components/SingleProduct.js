@@ -43,7 +43,7 @@ class SingleProduct extends React.Component {
       this.props.product;
 
     return (
-      <div className="container">
+      <div className="container single-product-container">
         <div className="row align-items-center">
           <div className="col-md-6">
             <img
