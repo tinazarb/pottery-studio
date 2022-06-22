@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { checkout } from '../../store/guest';
+import { userCheckout } from '../../store/cart';
 
 class PurchaseForm extends React.Component {
   constructor() {
@@ -27,18 +28,28 @@ class PurchaseForm extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.checkout(
-      {
-        user: {
-          email: this.state.email,
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
-          address: `${this.state.addressLine}, ${this.state.state} ${this.state.zip}, ${this.state.country} `,
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.props.userCheckout(
+        token,
+        this.props.cart.cartId,
+        this.props.history
+      );
+    } else {
+      //this is for guests, it creates an entry in the DB for them to save their cart
+      this.props.checkout(
+        {
+          user: {
+            email: this.state.email,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            address: `${this.state.addressLine}, ${this.state.state} ${this.state.zip}, ${this.state.country} `,
+          },
+          cart: this.props.cart,
         },
-        cart: this.props.cart,
-      },
-      this.props.history
-    );
+        this.props.history
+      );
+    }
   }
 
   render() {
@@ -123,6 +134,11 @@ class PurchaseForm extends React.Component {
   }
 }
 
-const mapDispatch = { checkout };
+const mapState = (state) => {
+  return {
+    cart: state.cart,
+  };
+};
+const mapDispatch = { checkout, userCheckout };
 
-export default connect(null, mapDispatch)(PurchaseForm);
+export default connect(mapState, mapDispatch)(PurchaseForm);

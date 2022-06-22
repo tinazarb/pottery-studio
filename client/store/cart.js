@@ -82,6 +82,26 @@ export const updateCart = (token, cartId, productId, quantity) => {
   };
 };
 
+export const userCheckout = (token, cartId, history) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`/api/cart/${cartId}/checkout`, null, {
+        headers: { Authorization: token },
+      });
+
+      const cart = {
+        cartId: data.cartId,
+        isCart: data.isCart,
+        products: {},
+      };
+      dispatch(setCart(cart));
+      history.push('/confirmation');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 /*
 a users cart = {
   cartId: id

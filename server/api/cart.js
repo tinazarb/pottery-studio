@@ -53,6 +53,20 @@ router.put('/:id', requireToken, async (req, res, next) => {
   }
 });
 
+//for signed in users updates active cart to "order" and creates a new active cart
+router.put('/:id/checkout', requireToken, async (req, res, next) => {
+  try {
+    const cartId = req.params.id;
+    const cart = await Cart.findByPk(cartId);
+    await cart.update({ isCart: false });
+    const newCart = await req.user.createCart();
+    const returnCart = await Cart.findCartWithProducts(newCart.id);
+    res.json(returnCart);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // router.post('/:userId/cart', requireToken, async (req, res, next) => {
 //   try {
 //     //want to create a cart with a user so user.createCart()

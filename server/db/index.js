@@ -13,6 +13,12 @@ User.hasMany(Cart);
 Cart.belongsTo(User);
 Cart.hasMany(CartProduct);
 
+Cart.findCartWithProducts = (id) => {
+  return Cart.findByPk(id, {
+    include: [{ model: CartProduct }],
+  });
+};
+
 module.exports = {
   db,
   Product,
