@@ -74,8 +74,21 @@ export const createUser = (user, history) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post('/api/users', user);
-      dispatch(setAuth(data));
-      localStorage.setItem('token', data.token);
+      dispatch(setAuth(data.user));
+
+      const cart = {
+        cartId: data.cart.id,
+        isCart: data.cart.isCart,
+        products: {},
+      };
+
+      for (const product of data.cart.cart_products) {
+        cart.products[product.productId] = product.quantity;
+      }
+
+      dispatch(setCart(cart));
+
+      localStorage.setItem('token', data.user.token);
       history.push('/');
     } catch (err) {
       console.log(err);
