@@ -121,6 +121,31 @@ footer {
   opacity: 0.7;
 }
 
+/* all products */
+.product-list button {
+  margin: 30px 0;
+  background-color: black;
+  color: white;
+  margin: 8px;
+}
+
+.product-list button:hover {
+  background-color: white;
+  color: #d39850;
+}
+
+.product-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-list-item-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* SINGLE PRODUCT VIEW */
 
 .single-product-content {
@@ -267,6 +292,25 @@ ion-icon:active {
   color: #d39850;
 }
 
+/* create an account */
+.account-form button {
+  margin: 30px 0;
+  background-color: black;
+  color: white;
+  margin: 8px;
+}
+
+.account-form button:hover {
+  background-color: white;
+  color: #d39850;
+}
+
+.account-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* Checkout page */
 
 #checkout-title {
@@ -339,4 +383,17 @@ ion-icon:active {
 .about-us-description {
   margin: auto;
   width: 50%;
+}
+
+/* all products */
+.product-list button {
+  margin: 30px 0;
+  background-color: black;
+  color: white;
+  margin: 8px;
+}
+
+.product-list button:hover {
+  background-color: white;
+  color: #d39850;
 }

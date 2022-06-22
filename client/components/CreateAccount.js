@@ -30,46 +30,52 @@ class CreateAccount extends React.Component {
   render() {
     const { email, password, firstName, lastName } = this.state;
     return (
-      <div className="account-form">
-        <form onSubmit={this.handleSubmit}>
+      <div>
+        <form className="account-form" onSubmit={this.handleSubmit}>
           <div>
-            <label>First Name</label>
+            <label className="col-sm-2 col-form-label">First Name</label>
             <input
               name="firstName"
               type="text"
               onChange={this.handleChange}
               value={firstName}
+              className="form-control"
             />
           </div>
           <div>
-            <label>Last Name</label>
+            <label className="col-sm-2 col-form-label">Last Name</label>
             <input
               name="lastName"
               type="text"
               onChange={this.handleChange}
               value={lastName}
+              className="form-control"
             />
           </div>
           <div>
-            <label>Email</label>
+            <label className="col-sm-2 col-form-label">Email</label>
             <input
               name="email"
               type="text"
               onChange={this.handleChange}
               value={email}
+              className="form-control"
             />
           </div>
           <div>
-            <label>Password</label>
+            <label className="col-sm-2 col-form-label">Password</label>
             <input
               name="password"
-              type="text"
+              type="password"
               onChange={this.handleChange}
               value={password}
+              className="form-control"
             />
           </div>
           <div>
-            <button type="submit">Submit</button>
+            <button className="btn btn-dark" type="submit">
+              Sign Up
+            </button>
           </div>
         </form>
       </div>
