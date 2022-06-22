@@ -36,11 +36,20 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 
         <ul className="navbar-nav">
         {isLoggedIn ? (
-            <button onClick={() => {
-              handleClick();
-              localStorage.removeItem('token');
-              localStorage.removeItem('cart');
-            }}>Logout</button>
+          <>
+            <li className="nav-item">
+              <Link className="nav-link" to="#">My Account</Link>
+            </li>
+
+            <li className="nav-item">
+                <Link className="nav-link" to="/" onClick={() => {
+                handleClick();
+                localStorage.removeItem('token');
+                localStorage.removeItem('cart');
+              }}>Logout <i class="bi bi-box-arrow-right"></i></Link>
+            </li>
+          </>
+
             ) : (
               <>
                 <li className="nav-item">
