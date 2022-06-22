@@ -52,7 +52,6 @@ export class Cart extends React.Component {
   };
 
   render() {
-    console.log('checkout props', this.props);
     if (this.props.products.length === 0) {
       return <div>Loading...</div>;
     }
@@ -62,9 +61,9 @@ export class Cart extends React.Component {
     }
 
     return (
-      <div className="cart-container">
-        <div>
-          <h2>Your Cart</h2>
+      <div className="container">
+        <div className="cart-container">
+          <h2 id="cart-title">Your Cart</h2>
           <div>
             {Object.entries(this.props.cart.products).map((productArray) => {
               const product = this.props.products.find(
@@ -94,7 +93,7 @@ export class Cart extends React.Component {
             })}
           </div>
           <div id="subtotal">Subtotal: ${this.getSubTotal()}</div>
-          <div>
+          <div id="checkout-button">
             <Link className="btn btn-dark" to="/checkout">
               Proceed to Checkout
             </Link>

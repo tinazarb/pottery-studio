@@ -53,22 +53,18 @@ router.put('/:id', requireToken, async (req, res, next) => {
   }
 });
 
-// router.post('/:userId/cart', requireToken, async (req, res, next) => {
-//   try {
-//     //want to create a cart with a user so user.createCart()
-//     const postCart = await Cart.findOrCreate({
-//       where: {
-//         userId: req.user.id,
-//         isCart: true,
-//       },
-//       include: {
-//         model: CartProduct,
-//       },
-//     });
-//     res.json(postCart);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+//for signed in users updates active cart to "order" and creates a new active cart
+router.put('/:id/checkout', requireToken, async (req, res, next) => {
+  try {
+    const cartId = req.params.id;
+    const cart = await Cart.findByPk(cartId);
+    await cart.update({ isCart: false });
+    const newCart = await req.user.createCart();
+    const returnCart = await Cart.findCartWithProducts(newCart.id);
+    res.json(returnCart);
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;

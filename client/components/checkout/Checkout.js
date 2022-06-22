@@ -13,8 +13,8 @@ class Checkout extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Checkout</h1>
+      <div className="container">
+        <h1 id="checkout-title">Checkout</h1>
         <div className="checkout-container">
           <PurchaseForm
             cart={this.props.cart.products}

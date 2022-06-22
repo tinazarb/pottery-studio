@@ -49,9 +49,12 @@ form div {
   letter-spacing: 2px;
 }
 
-.nav-link:focus, .nav-link:hover, nav a, nav a:hover {
-    color: black;
-    text-shadow: none;
+.nav-link:focus,
+.nav-link:hover,
+nav a,
+nav a:hover {
+  color: black;
+  text-shadow: none;
 }
 
 .nav-item {
@@ -116,6 +119,37 @@ footer {
 
 .carousel-item button:hover {
   opacity: 0.7;
+}
+
+/* all products */
+
+#all-products-title {
+  text-align: center;
+  margin: 10px;
+}
+
+.product-list button {
+  margin: 30px 0;
+  background-color: black;
+  color: white;
+  margin: 8px;
+}
+
+.product-list button:hover {
+  background-color: white;
+  color: #d39850;
+}
+
+.product-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-list-item-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* SINGLE PRODUCT VIEW */
@@ -231,6 +265,17 @@ ion-icon:active {
   color: #d39850;
 }
 
+#cart-title {
+  text-align: center;
+  margin: 10px;
+}
+
+#checkout-button {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+}
+
 /* Login Page */
 
 .login-form {
@@ -283,6 +328,11 @@ ion-icon:active {
 
 /* Checkout page */
 
+#checkout-title {
+  margin: 10px;
+  text-align: center;
+}
+
 .purchase-form-container button {
   margin: 30px 0;
   background-color: black;
@@ -297,6 +347,7 @@ ion-icon:active {
 
 .purchase-form-container {
   display: flex;
+  margin: 10px;
 }
 
 .purchase-form {
@@ -316,6 +367,7 @@ ion-icon:active {
   border-style: solid;
   border-width: thin;
   padding: 10px;
+  margin: 10px;
 }
 
 .checkoutCart-item-img {
@@ -332,13 +384,38 @@ ion-icon:active {
   justify-content: space-between;
 }
 
+.checkoutCart-item {
+  margin: 5px;
+  padding: 5px;
+}
+
 /* about us */
 
 .about-us-container {
-  text-align: center
+  text-align: center;
 }
 
 .about-us-description {
   margin: auto;
   width: 50%;
+}
+
+/* all products */
+.product-list button {
+  margin: 30px 0;
+  background-color: black;
+  color: white;
+  margin: 8px;
+}
+
+.product-list button:hover {
+  background-color: white;
+  color: #d39850;
+}
+
+/* confirmation page */
+
+#confirmation-title {
+  text-align: center;
+  margin: 10px;
 }

@@ -29,26 +29,25 @@ export class AllProducts extends React.Component {
     const products = this.props.products;
     return (
       <div>
-        <h2>Products</h2>
+        <h2 id="all-products-title">Products</h2>
 
         <div className="product-list">
           <ul>
             {products.map((product) => (
-              <div key={product.id}>
-                <div>
-                  <p className="title">Title: {product.title}</p>
-
+              <div className="product-list-item" key={product.id}>
+                <div className="product-list-item-detail">
                   <Link to={`/products/${product.id}`}>
                     <img className="list-image" src={product.imgUrl} />
                   </Link>
-
-                  <p className="price">Price: {product.price}</p>
+                  <p className="title">{product.title}</p>
+                  <p className="price">${product.price}</p>
                   {/* temp placement so I can see it working */}
-                  <p className="quantity">quantity: {product.quantity}</p>
+                  {/* <p className="quantity">quantity: {product.quantity}</p> */}
                 </div>
                 <div>
                   {/* I want to click the button and it adds something to cart...  */}
                   <button
+                    className="btn btn-dark"
                     type="button"
                     // need to check if item already exists in localStorage.
                     onClick={() => this.handleIncrement(product)}

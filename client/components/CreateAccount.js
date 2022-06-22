@@ -31,11 +31,13 @@ class CreateAccount extends React.Component {
     const { email, password, firstName, lastName } = this.state;
     return (
       <div className="contianer signup-form-container">
-        <h2>Create Account</h2>
+        <h2 id="create-account-title">Create Account</h2>
         <form className="signup-form" onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="col">
-              <label htmlFor="firstName" className="form-label">First Name</label>
+              <label htmlFor="firstName" className="form-label">
+                First Name
+              </label>
               <input
                 className="form-control"
                 name="firstName"
@@ -45,7 +47,10 @@ class CreateAccount extends React.Component {
               />
             </div>
             <div className="col">
-              <label htmlFor="lastName" className="form-label">Last Name</label>
+              <label htmlFor="lastName" className="form-label">
+                Last Name
+              </label>
+
               <input
                 className="form-control"
                 name="lastName"
@@ -58,7 +63,9 @@ class CreateAccount extends React.Component {
 
           <div className="row">
             <div className="col">
-              <label htmlFor="email" className="form-label">Email</label>
+              <label htmlFor="email" className="form-label">
+                Email
+              </label>
               <input
                 className="form-control"
                 name="email"
@@ -68,7 +75,9 @@ class CreateAccount extends React.Component {
               />
             </div>
             <div className="col">
-              <label htmlFor="password" className="form-label">Password</label>
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
               <input
                 className="form-control"
                 name="password"
@@ -80,7 +89,10 @@ class CreateAccount extends React.Component {
           </div>
 
           <div>
-            <button className="form-button btn btn-dark" type="submit">Sign Up</button>
+
+            <button className="form-button btn btn-dark" type="submit">
+              Sign Up
+            </button>
           </div>
         </form>
       </div>

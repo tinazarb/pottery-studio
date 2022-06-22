@@ -7,4 +7,5 @@ const Cart = db.define('cart', {
     defaultValue: true,
   },
 });
+
 module.exports = Cart;

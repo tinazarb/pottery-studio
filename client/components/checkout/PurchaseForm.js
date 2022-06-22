@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { checkout } from '../../store/guest';
+import { userCheckout } from '../../store/cart';
 
 class PurchaseForm extends React.Component {
   constructor() {
@@ -27,24 +28,34 @@ class PurchaseForm extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.checkout(
-      {
-        user: {
-          email: this.state.email,
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
-          address: `${this.state.addressLine}, ${this.state.state} ${this.state.zip}, ${this.state.country} `,
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.props.userCheckout(
+        token,
+        this.props.cart.cartId,
+        this.props.history
+      );
+    } else {
+      //this is for guests, it creates an entry in the DB for them to save their cart
+      this.props.checkout(
+        {
+          user: {
+            email: this.state.email,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            address: `${this.state.addressLine}, ${this.state.state} ${this.state.zip}, ${this.state.country} `,
+          },
+          cart: this.props.cart,
         },
-        cart: this.props.cart,
-      },
-      this.props.history
-    );
+        this.props.history
+      );
+    }
   }
 
   render() {
     const { email, firstName, lastName, addressLine, country, zip, state } =
       this.state;
-
+    console.log(this.props.user);
     return (
       <div className="purchase-form-container">
         <form className="purchase-form" onSubmit={this.handleSubmit}>
@@ -52,9 +63,11 @@ class PurchaseForm extends React.Component {
             <label>Email</label>
             <input
               name="email"
-              class="form-control"
+              className="form-control"
               onChange={this.handleChange}
-              value={email}
+              value={
+                this.props.user.email !== null ? this.props.user.email : email
+              }
             />
           </div>
           <div className="row">
@@ -64,17 +77,25 @@ class PurchaseForm extends React.Component {
                 name="firstName"
                 className="form-control"
                 onChange={this.handleChange}
-                value={firstName}
+                value={
+                  this.props.user.firstName !== null
+                    ? this.props.user.firstName
+                    : firstName
+                }
               />
             </div>
 
-            <div class="col">
+            <div className="col">
               <label>Last Name</label>
               <input
                 name="lastName"
                 className="form-control"
                 onChange={this.handleChange}
-                value={lastName}
+                value={
+                  this.props.user.lastName !== null
+                    ? this.props.user.lastName
+                    : lastName
+                }
               />
             </div>
           </div>
@@ -123,6 +144,12 @@ class PurchaseForm extends React.Component {
   }
 }
 
-const mapDispatch = { checkout };
+const mapState = (state) => {
+  return {
+    cart: state.cart,
+    user: state.auth,
+  };
+};
+const mapDispatch = { checkout, userCheckout };
 
-export default connect(null, mapDispatch)(PurchaseForm);
+export default connect(mapState, mapDispatch)(PurchaseForm);
