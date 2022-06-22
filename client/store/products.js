@@ -32,18 +32,24 @@ export const fetchProducts = () => {
   };
 };
 
-export const createProduct = (product) => {
+export const createProduct = (product, history) => {
   return async (dispatch) => {
     try {
-      const { data: created } = await axios.post('api/products', product);
+      const token = localStorage.getItem('token');
+      const { data: created } = await axios.post('api/products', product, {
+        headers: {
+          authorization: token,
+        },
+      });
       dispatch(createdProduct(created));
+      history.push('/shop');
     } catch (err) {
       console.log(err);
     }
   };
 };
 
-export const deleteProduct = (id) => {
+export const deleteProduct = (id, history) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token');

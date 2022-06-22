@@ -26,13 +26,22 @@ export const fetchSingleProduct = (id) => {
 };
 
 export const updateProduct = (product) => {
-  console.log('STORE PRODUCT', product);
   return async (dispatch) => {
-    const { data: updated } = await axios.put(
-      `/api/products/${product.id}`,
-      product
-    );
-    dispatch(updatedProduct(updated));
+    try {
+      const token = localStorage.getItem('token');
+      const { data: updated } = await axios.put(
+        `/api/products/${product.id}`,
+        product,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      dispatch(updatedProduct(updated));
+    } catch (err) {
+      console.log(err);
+    }
   };
 };
 

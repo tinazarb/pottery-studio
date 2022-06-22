@@ -27,7 +27,7 @@ class CreateProduct extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.createProduct(this.state);
+    this.props.createProduct(this.state, this.props.history);
     this.setState({
       title: '',
       price: '',
@@ -45,78 +45,78 @@ class CreateProduct extends React.Component {
 
     return (
       <div className="product-form">
-         {this.props.auth.isAdmin ? (
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label>Title</label>
-            <input
-              name="title"
-              type="text"
-              onChange={this.handleChange}
-              value={title}
-            />
-          </div>
-          <div>
-            <label>Price</label>
-            <input
-              name="price"
-              type="number"
-              min="0"
-              onChange={this.handleChange}
-              value={price}
-            />
-          </div>
-          <div>
-            <label>Description</label>
-            <input
-              name="description"
-              type="text"
-              onChange={this.handleChange}
-              value={description}
-            />
-          </div>
-          <div>
-            <label>Type</label>
-            <input
-              name="type"
-              type="text"
-              onChange={this.handleChange}
-              value={type}
-            />
-          </div>
-          <div>
-            <label>Quantity</label>
-            <input
-              name="quantity"
-              type="number"
-              min="0"
-              onChange={this.handleChange}
-              value={quantity}
-            />
-          </div>
-          <div>
-            <label>Colour</label>
-            <input
-              name="colour"
-              type="text"
-              onChange={this.handleChange}
-              value={colour}
-            />
-          </div>
-          <div>
-            <label>ImgURL</label>
-            <input
-              name="imgUrl"
-              type="text"
-              onChange={this.handleChange}
-              value={imgUrl}
-            />
-          </div>
-          <div>
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-         ) : null }
+        {this.props.auth.isAdmin ? (
+          <form onSubmit={this.handleSubmit}>
+            <div>
+              <label>Title</label>
+              <input
+                name="title"
+                type="text"
+                onChange={this.handleChange}
+                value={title}
+              />
+            </div>
+            <div>
+              <label>Price</label>
+              <input
+                name="price"
+                type="number"
+                min="0"
+                onChange={this.handleChange}
+                value={price}
+              />
+            </div>
+            <div>
+              <label>Description</label>
+              <input
+                name="description"
+                type="text"
+                onChange={this.handleChange}
+                value={description}
+              />
+            </div>
+            <div>
+              <label>Type</label>
+              <input
+                name="type"
+                type="text"
+                onChange={this.handleChange}
+                value={type}
+              />
+            </div>
+            <div>
+              <label>Quantity</label>
+              <input
+                name="quantity"
+                type="number"
+                min="0"
+                onChange={this.handleChange}
+                value={quantity}
+              />
+            </div>
+            <div>
+              <label>Colour</label>
+              <input
+                name="colour"
+                type="text"
+                onChange={this.handleChange}
+                value={colour}
+              />
+            </div>
+            <div>
+              <label>ImgURL</label>
+              <input
+                name="imgUrl"
+                type="text"
+                onChange={this.handleChange}
+                value={imgUrl}
+              />
+            </div>
+            <div>
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        ) : null}
       </div>
     );
   }
@@ -129,7 +129,8 @@ const mapState = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     autoLogin: (token) => dispatch(autoLogin(token)),
-    createProduct: (formData) => dispatch(createProduct(formData)),
+    createProduct: (formData, history) =>
+      dispatch(createProduct(formData, history)),
   };
 };
 

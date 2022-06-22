@@ -9,8 +9,17 @@ const _setUsers = (users) => ({ type: SET_USERS, users });
 // Thunk Creators
 export const fetchUsers = () => {
   return async (dispatch) => {
-    const { data: users } = await axios.get('/api/admin/users');
-    dispatch(_setUsers(users));
+    try {
+      const token = localStorage.getItem('token');
+      const { data: users } = await axios.get('/api/admin/users', {
+        headers: {
+          authorization: token,
+        },
+      });
+      dispatch(_setUsers(users));
+    } catch (err) {
+      console.log(err);
+    }
   };
 };
 

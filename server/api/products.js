@@ -12,9 +12,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// ******************************
 //  GET /api/products/:id
-// ******************************
 router.get('/:id', async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id);
@@ -25,7 +23,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 //POST api/products
-router.post('/', async (req, res, next) => {
+router.post('/', requireToken, isAdmin, async (req, res, next) => {
   try {
     res.status(201).send(await Product.create(req.body));
   } catch (error) {
@@ -45,7 +43,7 @@ router.delete('/:id', requireToken, isAdmin, async (req, res, next) => {
 });
 
 // UPDATE /api/products/:id
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', requireToken, isAdmin, async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id);
     res.send(await product.update(req.body));

@@ -44,6 +44,11 @@ class App extends React.Component {
                   path="/products/create"
                   component={CreateProduct}
                 />
+                <Route
+                  exact
+                  path="/products/:id/edit"
+                  component={EditProduct}
+                />
                 <Route exact path="/products/:id" component={SingleProduct} />
                 <Route exact path="/cart" component={Cart} />
                 <Route exact path="/login" component={Login} />

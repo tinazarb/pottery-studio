@@ -15,16 +15,15 @@ export class AllProducts extends React.Component {
 
   render() {
     const products = this.props.products;
-    console.log('ALL PRODUCTS AUTH', this.props);
     return (
       <div>
         <h2>Products</h2>
         {this.props.auth.isAdmin === true ? (
           <div className="product-list">
-            {/* <Link to="/products/create" id={this.props.id}>
+            <Link to="/products/create">
               <button>Add a product</button>
-            </Link> */}
-            <CreateProduct />
+            </Link>
+
             <ul>
               {products.map((product) => (
                 <div key={product.id}>
@@ -40,25 +39,7 @@ export class AllProducts extends React.Component {
                     <p className="quantity">quantity: {product.quantity}</p>
                   </div>
                   <div>
-                    <EditProduct productKey={product} id={product.id} />
-                    {/* <Route
-                      exact
-                      path={`/products/edit/${product.id}`}
-                      render={(props) => {
-                        console.log('Edit Route Product', product);
-                        return (
-                          <EditProduct
-                            {...props}
-                            productKey={product}
-                            id={product.id}
-                          />
-                        );
-                      }}
-                    />
-
-                    <Link to={`/products/edit/${product.id}`}>
-                      <button> Edit</button>
-                    </Link> */}
+                    {/* <EditProduct productKey={product} id={product.id} /> */}
                   </div>
                   <div>
                     <DeleteProduct id={product.id} />

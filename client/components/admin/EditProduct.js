@@ -47,7 +47,6 @@ class EditProduct extends Component {
   render() {
     const { title, price, description, type, quantity, colour, imgUrl } =
       this.state;
-    console.log('HITTING EDIT PRODUCT COMPONENT');
     return (
       <div>
         <br />
