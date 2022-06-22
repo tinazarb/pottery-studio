@@ -55,7 +55,7 @@ class PurchaseForm extends React.Component {
   render() {
     const { email, firstName, lastName, addressLine, country, zip, state } =
       this.state;
-
+    console.log(this.props.user);
     return (
       <div className="purchase-form-container">
         <form className="purchase-form" onSubmit={this.handleSubmit}>
@@ -65,7 +65,9 @@ class PurchaseForm extends React.Component {
               name="email"
               className="form-control"
               onChange={this.handleChange}
-              value={email}
+              value={
+                this.props.user.email !== null ? this.props.user.email : email
+              }
             />
           </div>
           <div className="row">
@@ -75,7 +77,11 @@ class PurchaseForm extends React.Component {
                 name="firstName"
                 className="form-control"
                 onChange={this.handleChange}
-                value={firstName}
+                value={
+                  this.props.user.firstName !== null
+                    ? this.props.user.firstName
+                    : firstName
+                }
               />
             </div>
 
@@ -85,7 +91,11 @@ class PurchaseForm extends React.Component {
                 name="lastName"
                 className="form-control"
                 onChange={this.handleChange}
-                value={lastName}
+                value={
+                  this.props.user.lastName !== null
+                    ? this.props.user.lastName
+                    : lastName
+                }
               />
             </div>
           </div>
@@ -137,6 +147,7 @@ class PurchaseForm extends React.Component {
 const mapState = (state) => {
   return {
     cart: state.cart,
+    user: state.auth,
   };
 };
 const mapDispatch = { checkout, userCheckout };

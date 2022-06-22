@@ -28,7 +28,7 @@ class Confirmation extends React.Component {
     return (
       <div className="container">
         <div>
-          <h1>Thank you!</h1>
+          <h1 id="confirmation-title">Thank you!</h1>
           <p>Please find your order confirmation below</p>
         </div>
         <div>
@@ -38,7 +38,7 @@ class Confirmation extends React.Component {
             <p>
               Name: {this.props.guest.firstName} {this.props.guest.lastName} */}
             {/* </p> */}
-            <p>Shipping Address:</p>
+            {/* <p>Shipping Address:</p> */}
           </div>
           {Object.entries(this.props.order.products).map((productArray) => {
             const product = this.props.products.find(

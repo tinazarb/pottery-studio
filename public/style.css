@@ -122,6 +122,12 @@ footer {
 }
 
 /* all products */
+
+#all-products-title {
+  text-align: center;
+  margin: 10px;
+}
+
 .product-list button {
   margin: 30px 0;
   background-color: black;
@@ -401,4 +407,11 @@ ion-icon:active {
 .product-list button:hover {
   background-color: white;
   color: #d39850;
+}
+
+/* confirmation page */
+
+#confirmation-title {
+  text-align: center;
+  margin: 10px;
 }

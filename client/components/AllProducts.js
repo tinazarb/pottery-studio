@@ -29,7 +29,7 @@ export class AllProducts extends React.Component {
     const products = this.props.products;
     return (
       <div>
-        <h2>Products</h2>
+        <h2 id="all-products-title">Products</h2>
 
         <div className="product-list">
           <ul>
