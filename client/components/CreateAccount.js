@@ -30,46 +30,57 @@ class CreateAccount extends React.Component {
   render() {
     const { email, password, firstName, lastName } = this.state;
     return (
-      <div className="account-form">
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label>First Name</label>
-            <input
-              name="firstName"
-              type="text"
-              onChange={this.handleChange}
-              value={firstName}
-            />
+      <div className="contianer signup-form-container">
+        <h2>Create Account</h2>
+        <form className="signup-form" onSubmit={this.handleSubmit}>
+          <div className="row">
+            <div className="col">
+              <label htmlFor="firstName" className="form-label">First Name</label>
+              <input
+                className="form-control"
+                name="firstName"
+                type="text"
+                onChange={this.handleChange}
+                value={firstName}
+              />
+            </div>
+            <div className="col">
+              <label htmlFor="lastName" className="form-label">Last Name</label>
+              <input
+                className="form-control"
+                name="lastName"
+                type="text"
+                onChange={this.handleChange}
+                value={lastName}
+              />
+            </div>
           </div>
-          <div>
-            <label>Last Name</label>
-            <input
-              name="lastName"
-              type="text"
-              onChange={this.handleChange}
-              value={lastName}
-            />
+
+          <div className="row">
+            <div className="col">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input
+                className="form-control"
+                name="email"
+                type="text"
+                onChange={this.handleChange}
+                value={email}
+              />
+            </div>
+            <div className="col">
+              <label htmlFor="password" className="form-label">Password</label>
+              <input
+                className="form-control"
+                name="password"
+                type="text"
+                onChange={this.handleChange}
+                value={password}
+              />
+            </div>
           </div>
+
           <div>
-            <label>Email</label>
-            <input
-              name="email"
-              type="text"
-              onChange={this.handleChange}
-              value={email}
-            />
-          </div>
-          <div>
-            <label>Password</label>
-            <input
-              name="password"
-              type="text"
-              onChange={this.handleChange}
-              value={password}
-            />
-          </div>
-          <div>
-            <button type="submit">Submit</button>
+            <button className="form-button btn btn-dark" type="submit">Sign Up</button>
           </div>
         </form>
       </div>

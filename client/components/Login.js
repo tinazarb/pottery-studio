@@ -28,7 +28,7 @@ class Login extends React.Component {
     const { email, password } = this.state;
     return (
       <div className="login-form-container">
-        <h2>Pottery Studio</h2>
+        <h2>Welcome Back!</h2>
         <div>
           <form className="login-form" onSubmit={this.handleSubmit}>
             <div>
@@ -57,15 +57,13 @@ class Login extends React.Component {
             </div>
             <div>
               <button
-                className="form-button"
-                class="btn btn-dark"
+                className="form-button btn btn-dark"
                 type="submit"
               >
                 Login
               </button>
               <button
-                className="form-button"
-                class="btn btn-dark"
+                className="form-button btn btn-dark"
                 type="button"
               >
                 Forgot Password
