@@ -50,6 +50,7 @@ class CreateAccount extends React.Component {
               <label htmlFor="lastName" className="form-label">
                 Last Name
               </label>
+
               <input
                 className="form-control"
                 name="lastName"
@@ -88,6 +89,7 @@ class CreateAccount extends React.Component {
           </div>
 
           <div>
+
             <button className="form-button btn btn-dark" type="submit">
               Sign Up
             </button>

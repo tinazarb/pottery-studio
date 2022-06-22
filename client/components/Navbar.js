@@ -74,6 +74,7 @@ class Navbar extends React.Component {
               Pottery Studio
             </Link>
 
+
             <ul className="navbar-nav">
               {this.props.isLoggedIn ? (
                 <Link className="nav-link" to="/">
