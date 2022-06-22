@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { fetchProducts } from '../store/products';
-import { incrementItem, decrementItem } from '../store/cart';
+import { incrementItem, decrementItem, updateCart } from '../store/cart';
 
 export class Cart extends React.Component {
   componentDidMount() {
@@ -23,6 +23,34 @@ export class Cart extends React.Component {
     return total;
   };
 
+  handleIncrement = (product) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.props.updateCart(
+        token,
+        this.props.cart.cartId,
+        product.id,
+        this.props.cart.products[product.id] + 1
+      );
+    } else {
+      this.props.incrementItem(product.id);
+    }
+  };
+
+  handleDecrement = (product) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.props.updateCart(
+        token,
+        this.props.cart.cartId,
+        product.id,
+        this.props.cart.products[product.id] - 1
+      );
+    } else {
+      this.props.decrementItem(product.id);
+    }
+  };
+
   render() {
     console.log('checkout props', this.props);
     if (this.props.products.length === 0) {
@@ -33,9 +61,6 @@ export class Cart extends React.Component {
       return <div>Your cart is currently empty</div>;
     }
 
-    // if (!this.props.cart.products.isCart) {
-    //   return <div>Your cart is currently empty</div>;
-    // } else {
     return (
       <div className="cart-container">
         <div>
@@ -55,12 +80,12 @@ export class Cart extends React.Component {
                     <ion-icon
                       name="add-circle-outline"
                       onClick={() => {
-                        this.props.incrementItem(product.id);
+                        this.handleIncrement(product);
                       }}
                     ></ion-icon>
                     <ion-icon
                       name="remove-circle-outline"
-                      onClick={() => this.props.decrementItem(product.id)}
+                      onClick={() => this.handleDecrement(product)}
                     ></ion-icon>
                   </div>
                   <p>${product.price * productArray[1]}</p>
@@ -90,6 +115,8 @@ const mapDispatch = (dispatch) => ({
   getProducts: () => dispatch(fetchProducts()),
   incrementItem: (productId) => dispatch(incrementItem(productId)),
   decrementItem: (productId) => dispatch(decrementItem(productId)),
+  updateCart: (token, cartId, productId, quantity) =>
+    dispatch(updateCart(token, cartId, productId, quantity)),
 });
 
 export default connect(mapState, mapDispatch)(Cart);

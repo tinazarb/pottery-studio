@@ -3,12 +3,27 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { fetchProducts } from '../store/products';
-import { incrementItem } from '../store/cart';
+import { incrementItem, updateCart } from '../store/cart';
 
 export class AllProducts extends React.Component {
   componentDidMount() {
     this.props.getProducts();
   }
+
+  handleIncrement = (product) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      let currentQuantity = this.props.cart.products[product.id] || 0;
+      this.props.updateCart(
+        token,
+        this.props.cart.cartId,
+        product.id,
+        currentQuantity + 1
+      );
+    } else {
+      this.props.incrementItem(product.id);
+    }
+  };
 
   render() {
     const products = this.props.products;
@@ -36,7 +51,7 @@ export class AllProducts extends React.Component {
                   <button
                     type="button"
                     // need to check if item already exists in localStorage.
-                    onClick={() => this.props.incrementItem(product.id)}
+                    onClick={() => this.handleIncrement(product)}
                   >
                     Purchase
                   </button>
@@ -52,11 +67,14 @@ export class AllProducts extends React.Component {
 
 const mapState = (state) => ({
   products: state.products,
+  cart: state.cart,
 });
 
 const mapDispatch = (dispatch) => ({
   getProducts: () => dispatch(fetchProducts()),
   incrementItem: (productId) => dispatch(incrementItem(productId)),
+  updateCart: (token, cartId, productId, quantity) =>
+    dispatch(updateCart(token, cartId, productId, quantity)),
 });
 
 export default connect(mapState, mapDispatch)(AllProducts);

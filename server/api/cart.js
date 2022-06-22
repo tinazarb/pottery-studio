@@ -30,23 +30,45 @@ router.get('/', requireToken, async (req, res, next) => {
   }
 });
 
-
-router.post('/:userId', requireToken, async (req, res, next) => {
+router.put('/:id', requireToken, async (req, res, next) => {
   try {
-    const postCart = await Cart.findOrCreate({
+    const cartId = req.params.id;
+    //in req.body = {productId, qty}
+    const [userCart] = await CartProduct.findOrCreate({
       where: {
-        userId: req.user.id,
-        isCart: true
+        cartId: cartId,
+        productId: req.body.productId,
       },
-      include: {
-        model: CartProduct
-      }
-    })
-    res.json(postCart)
-  } catch(err) {
+    });
+    await userCart.update({ quantity: req.body.quantity });
+
+    if (userCart.quantity === 0) {
+      await userCart.destroy();
+    }
+    res.json(userCart);
+
+    //sends the above object {cartId, productId, quantity}
+  } catch (err) {
     next(err);
   }
-})
+});
 
+// router.post('/:userId/cart', requireToken, async (req, res, next) => {
+//   try {
+//     //want to create a cart with a user so user.createCart()
+//     const postCart = await Cart.findOrCreate({
+//       where: {
+//         userId: req.user.id,
+//         isCart: true,
+//       },
+//       include: {
+//         model: CartProduct,
+//       },
+//     });
+//     res.json(postCart);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 module.exports = router;

@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { fetchSingleProduct } from '../store/singleProduct';
-import { incrementItem } from '../store/cart';
+import { incrementItem, updateCart } from '../store/cart';
 
 class SingleProduct extends React.Component {
   constructor() {
     super();
     this.state = {
-      quantity: '',
+      quantity: 1,
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -23,8 +23,22 @@ class SingleProduct extends React.Component {
     });
   }
 
+  handleIncrement = (product) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      let currentQuantity = this.props.cart.products[product.id] || 0;
+      this.props.updateCart(
+        token,
+        this.props.cart.cartId,
+        product.id,
+        currentQuantity + parseInt(this.state.quantity)
+      );
+    } else {
+      this.props.incrementItem(product.id);
+    }
+  };
+
   render() {
-    console.log(this.props.product);
     const { title, price, type, colour, imgUrl, description, id } =
       this.props.product;
 
@@ -58,7 +72,7 @@ class SingleProduct extends React.Component {
 
             <button
               class="btn btn-dark"
-              onClick={() => this.props.incrementItem(id, this.state.quantity)}
+              onClick={() => this.handleIncrement(this.props.product)}
             >
               ADD TO CART <i class="bi bi-cart"></i>
             </button>
@@ -94,6 +108,8 @@ const mapDispatch = (dispatch) => {
     loadSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
     incrementItem: (productId, quantity) =>
       dispatch(incrementItem(productId, quantity)),
+    updateCart: (token, cartId, productId, quantity) =>
+      dispatch(updateCart(token, cartId, productId, quantity)),
   };
 };
 

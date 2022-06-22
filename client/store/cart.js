@@ -5,10 +5,19 @@ const DECREMENT_QTY = 'DECREMENT_QTY';
 
 const SET_CART = 'SET_CART';
 const CLEAR_CART = 'CLEAR_CART';
+const UPDATE_QTY = 'UPDATE_QTY';
 
 export const incrementItem = (productId, quantity = 1) => {
   return {
     type: INCREMENT_QTY,
+    productId,
+    quantity,
+  };
+};
+
+export const updateQty = (productId, quantity) => {
+  return {
+    type: UPDATE_QTY,
     productId,
     quantity,
   };
@@ -56,8 +65,26 @@ export const getCart = (token) => {
   };
 };
 
+export const updateCart = (token, cartId, productId, quantity) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(
+        `/api/cart/${cartId}`,
+        { productId, quantity },
+        {
+          headers: { Authorization: token },
+        }
+      );
+      dispatch(updateQty(data.productId, data.quantity));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 /*
 a users cart = {
+  cartId: id
   isCart: boolean,
   products: {id: qty, id: qty}
 }
@@ -95,9 +122,9 @@ export default function cartReducer(state = initialState, action) {
       }
     case DECREMENT_QTY:
       if (state.products[action.productId] === 1) {
-        let newstate = { ...state };
-        delete newstate.products[action.productId];
-        return newstate;
+        let newProducts = { ...state.products };
+        delete newProducts[action.productId];
+        return { ...state, products: newProducts };
       } else {
         return {
           ...state,
@@ -107,6 +134,18 @@ export default function cartReducer(state = initialState, action) {
           },
         };
       }
+    case UPDATE_QTY:
+      if (action.quantity === 0) {
+        let newProducts = { ...state.products };
+        delete newProducts[action.productId];
+        return { ...state, products: newProducts };
+      } else {
+        return {
+          ...state,
+          products: { ...state.products, [action.productId]: action.quantity },
+        };
+      }
+
     case SET_CART:
       return action.cart;
     case CLEAR_CART:
