@@ -2,11 +2,11 @@ import axios from 'axios';
 
 import { setCart } from './cart';
 
-const SET_USER = 'SET_USER';
+const SET_GUEST = 'SET_GUEST';
 
-export const setUser = (user) => {
+export const setGuest = (user) => {
   return {
-    type: SET_USER,
+    type: SET_GUEST,
     user,
   };
 };
@@ -16,8 +16,8 @@ export const checkout = (guestCart, history) => {
     try {
       const { data } = await axios.post('/api/guest', guestCart);
       console.log('confirmation', data);
-      dispatch(setUser(data.user));
-      dispatch(setCart(data.cart));
+      dispatch(setGuest(data.user));
+      // dispatch(setCart(data.cart));
       history.push('/confirmation');
     } catch (err) {
       console.log(err);
@@ -29,7 +29,7 @@ const initialState = null;
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case SET_USER:
+    case SET_GUEST:
       return action.user;
     default:
       return state;
