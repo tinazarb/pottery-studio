@@ -419,3 +419,48 @@ ion-icon:active {
   text-align: center;
   margin: 10px;
 }
+
+/* ADMIN LOGIN PAGE */
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-login-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 150px;
+}
+
+.admin-login-form button:hover {
+  background-color: white;
+  color: #d39850;
+}
+
+/* ADMIN HOME PAGE */
+.admin-home-container {
+  padding-top: 150px;
+}
+
+.admin-home-container .btn:hover {
+  background-color: white;
+  color: #d39850;
+}
+
+/* ADMIN PROFUCT FORM */
+.product-form-container .form-label {
+  font-weight: bold;
+}
+
+.product-form-container .btn:hover {
+  background-color: white;
+  color: #d39850;
+}
+
+/* ALL PRODUCTS */
+#edit-button:hover {
+  background-color: white;
+  color: #d39850;
+}

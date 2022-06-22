@@ -11,7 +11,10 @@ const CLEAR_AUTH = 'CLEAR_AUTH';
  * ACTION CREATORS
  */
 const setAuth = (auth) => ({ type: SET_AUTH, auth });
-export const logout = () => ({ type: CLEAR_AUTH });
+
+export const logout = () => {
+  return { type: CLEAR_AUTH };
+};
 
 /**
  * THUNK CREATORS
@@ -23,19 +26,24 @@ export const loginUser = (formData, history) => {
       const { data } = await axios.post('/api/auth/login', formData);
       dispatch(setAuth(data.user));
       localStorage.setItem('token', data.user.token);
+      if (data.user.isAdmin === true) {
+        history.push('/admin');
+      } else {
+        const cart = {
+          cartId: data.cart.id,
+          isCart: data.cart.isCart,
+          products: {},
+        };
 
-      const cart = {
-        cartId: data.cart.id,
-        isCart: data.cart.isCart,
-        products: {},
-      };
+        for (const product of data.cart.cart_products) {
+          cart.products[product.productId] = product.quantity;
+        }
 
-      for (const product of data.cart.cart_products) {
-        cart.products[product.productId] = product.quantity;
+        dispatch(setCart(cart));
+        history.push('/');
       }
 
-      dispatch(setCart(cart));
-      history.push('/');
+
     } catch (err) {
       console.log(err);
     }

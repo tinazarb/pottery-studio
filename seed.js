@@ -42,7 +42,7 @@ const seed = async () => {
       firstName: 'Admin',
       lastName: 'User',
       email: 'admin@admin.com',
-      password: 'admintest',
+      password: '00',
       address: '123 Admin Road, Brooklyn, NY 11004',
       isAdmin: true,
     });

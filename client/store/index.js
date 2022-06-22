@@ -7,6 +7,7 @@ import products from './products';
 import cart from './cart';
 import singleProduct from './singleProduct';
 import auth from './auth';
+import users from './users';
 import guest from './guest';
 import order from './orders';
 
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   singleProduct,
   cart,
   auth,
+  users,
   guest,
   order,
 });
