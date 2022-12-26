@@ -15,7 +15,7 @@ You can visit and demo the site here: https://pottery-studio.fly.dev/
 <img src="https://github.com/tinazarb/pottery-studio/blob/5b4c9bbe2e3fd3606a25eee510c134839066cbd4/public/assets/pottery-studio.gif" width="1000">
 </div>
 
-## Team Memebers
+## Team Members
 
 |                          Lai Ying Wong                           |                    Kat Keffner                    |                     Lydia Kwa                      |
 | :--------------------------------------------------------------: | :-----------------------------------------------: | :------------------------------------------------: |
