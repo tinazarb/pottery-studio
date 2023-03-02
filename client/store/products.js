@@ -1,7 +1,7 @@
 import axios from 'axios';
 import history from '../history';
 
-const serverURL = 'https://pottery-studio.onrender.com/';
+const serverURL = 'https://pottery-studio.onrender.com';
 
 // Action Types
 const SET_PRODUCTS = 'SET_PRODUCTS';
