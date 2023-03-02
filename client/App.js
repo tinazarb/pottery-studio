@@ -54,6 +54,7 @@ class App extends React.Component {
                 <Route exact path="/products/:id" component={SingleProduct} />
                 <Route exact path="/cart" component={Cart} />
                 <Route exact path="/login" component={Login} />
+                <Route exact path="/aboutus" component={AboutUs} />
                 <Route exact path="/signup" component={CreateAccount} />
                 <Route exact path="/admin" component={AdminHome} />
                 <Route exact path="/admin/login" component={AdminLogin} />
@@ -66,10 +67,11 @@ class App extends React.Component {
                 <Route exact path="/shop" component={AllProducts} />
                 <Route exact path="/products/:id" component={SingleProduct} />
                 <Route exact path="/cart" component={Cart} />
+                <Route exact path="/aboutus" component={AboutUs} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={CreateAccount} />
                 <Route exact path="/checkout" component={Checkout} />
-              <Route exact path="/confirmation" component={Confirmation} />
+                <Route exact path="/confirmation" component={Confirmation} />
               </Switch>
             )}
           </main>
