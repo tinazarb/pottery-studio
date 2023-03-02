@@ -5,8 +5,9 @@ const { requireToken, isAdmin } = require('../middleware');
 // GET /api.products
 router.get('/', async (req, res, next) => {
   try {
-    const products = await Product.findAll();
-    res.json(products);
+    // const products = await Product.findAll();
+    // res.json(products);
+    res.json({ name: 'mug', productType: 'mug' });
   } catch (err) {
     next(err);
   }
@@ -15,8 +16,9 @@ router.get('/', async (req, res, next) => {
 //  GET /api/products/:id
 router.get('/:id', async (req, res, next) => {
   try {
-    const product = await Product.findByPk(req.params.id);
-    res.json(product);
+    // const product = await Product.findByPk(req.params.id);
+    // res.json(product);
+    res.json({ name: 'mug', id: req.params.id });
   } catch (err) {
     next(err);
   }
