@@ -27,7 +27,9 @@ const deletedProduct = (product) => ({
 // Thunk Creators
 export const fetchProducts = () => {
   return async (dispatch) => {
-    const { data: products } = await axios.get('/api/products');
+    const { data: products } = await axios.get(
+      process.env.serverURL + '/api/products'
+    );
     dispatch(_setProducts(products));
   };
 };
@@ -36,11 +38,15 @@ export const createProduct = (product, history) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token');
-      const { data: created } = await axios.post('api/products', product, {
-        headers: {
-          authorization: token,
-        },
-      });
+      const { data: created } = await axios.post(
+        process.env.serverURL + 'api/products',
+        product,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
       dispatch(createdProduct(created));
       history.push('/shop');
     } catch (err) {
@@ -53,11 +59,14 @@ export const deleteProduct = (id) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token');
-      const { data: product } = await axios.delete(`/api/products/${id}`, {
-        headers: {
-          authorization: token,
-        },
-      });
+      const { data: product } = await axios.delete(
+        `${process.env.serverURL}/api/products/${id}`,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
       dispatch(deletedProduct(product));
     } catch (err) {
       console.log(err);
