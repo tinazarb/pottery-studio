@@ -1,0 +1,8 @@
+...
+
+[[headers]]
+  for = "/public/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+
+...
