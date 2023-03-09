@@ -1,4 +1,4 @@
 [[headers]]
-  for = "*/public"
+  for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"

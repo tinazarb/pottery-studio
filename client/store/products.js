@@ -1,8 +1,6 @@
 import axios from 'axios';
 import history from '../history';
 
-const serverURL = 'https://pottery-studio.onrender.com';
-
 // Action Types
 const SET_PRODUCTS = 'SET_PRODUCTS';
 const CREATE_PRODUCT = 'CREATE_PRODUCT';
@@ -29,7 +27,7 @@ const deletedProduct = (product) => ({
 // Thunk Creators
 export const fetchProducts = () => {
   return async (dispatch) => {
-    const { data: products } = await axios.get(serverURL + '/api/products');
+    const { data: products } = await axios.get('/api/products');
     dispatch(_setProducts(products));
   };
 };
@@ -38,15 +36,11 @@ export const createProduct = (product, history) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token');
-      const { data: created } = await axios.post(
-        serverURL + 'api/products',
-        product,
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      );
+      const { data: created } = await axios.post('api/products', product, {
+        headers: {
+          authorization: token,
+        },
+      });
       dispatch(createdProduct(created));
       history.push('/shop');
     } catch (err) {
@@ -59,14 +53,11 @@ export const deleteProduct = (id) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token');
-      const { data: product } = await axios.delete(
-        `${serverURL}/api/products/${id}`,
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      );
+      const { data: product } = await axios.delete(`api/products/${id}`, {
+        headers: {
+          authorization: token,
+        },
+      });
       dispatch(deletedProduct(product));
     } catch (err) {
       console.log(err);
