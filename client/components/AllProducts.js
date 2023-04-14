@@ -42,7 +42,7 @@ export class AllProducts extends React.Component {
       <div>
         <h2 id="all-products-title">Products</h2>
         {this.state.isLoading && <Loading />}
-        {this.props.auth.isAdmin === true ? (
+        {!this.state.isLoading && this.props.auth.isAdmin === true && (
           <div className="product-list">
             <ul>
               {products.map((product) => (
@@ -85,37 +85,36 @@ export class AllProducts extends React.Component {
                       <button>Create a new product</button>
                     </Link> */}
           </div>
-        ) : (
-          !this.state.isLoading && (
-            <div className="product-list">
-              <ul>
-                {products.map((product) => (
-                  <div className="product-list-item" key={product.id}>
-                    <div className="product-list-item-detail">
-                      <Link to={`/products/${product.id}`}>
-                        <img className="list-image" src={product.imgUrl} />
-                      </Link>
-                      <p className="title">{product.title}</p>
-                      <p className="price">${product.price}</p>
-                      {/* temp placement so I can see it working */}
-                      {/* <p className="quantity">quantity: {product.quantity}</p> */}
-                    </div>
-
-                    <div>
-                      {/* I want to click the button and it adds something to cart...  */}
-                      <button
-                        className="btn btn-dark"
-                        type="button"
-                        // need to check if item already exists in localStorage.
-                        onClick={() => this.handleIncrement(product)}>
-                        Purchase
-                      </button>
-                    </div>
+        )}
+        {!this.state.isLoading && (
+          <div className="product-list">
+            <ul>
+              {products.map((product) => (
+                <div className="product-list-item" key={product.id}>
+                  <div className="product-list-item-detail">
+                    <Link to={`/products/${product.id}`}>
+                      <img className="list-image" src={product.imgUrl} />
+                    </Link>
+                    <p className="title">{product.title}</p>
+                    <p className="price">${product.price}</p>
+                    {/* temp placement so I can see it working */}
+                    {/* <p className="quantity">quantity: {product.quantity}</p> */}
                   </div>
-                ))}
-              </ul>
-            </div>
-          )
+
+                  <div>
+                    {/* I want to click the button and it adds something to cart...  */}
+                    <button
+                      className="btn btn-dark"
+                      type="button"
+                      // need to check if item already exists in localStorage.
+                      onClick={() => this.handleIncrement(product)}>
+                      Purchase
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </ul>
+          </div>
         )}
       </div>
     );
